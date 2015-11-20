@@ -1,0 +1,34 @@
+<!doctype html>
+
+<html>
+<head>
+	<meta charset="utf-8">
+	
+	{% if title %}
+	<title>{{ title }}</title>
+	{% else %}
+	<title>Welcome !</title>
+	{% endif %}
+	<meta name="description" content="Projet SGBD">
+	<meta name="author" content="ENSEIRB">
+
+	<link rel="stylesheet" href="static/bootstrap.css">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+	<div class="container">
+		<p>
+			<ul>
+				{% for u in data %}
+				<li>Username = {{u[1]}}, Password = {{u[2]}}</li>
+				{% endfor %}
+			</ul>
+		</p>
+	</div>
+	<!--<script src="js/scripts.js"></script>-->
+</body>
+</html>
