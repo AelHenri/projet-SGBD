@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS Eleve
     Id_eleve			int				not null AUTO_INCREMENT,
     Nom_eleve			varchar(20)		not null,
     Prenom_eleve		varchar(20)		not null,
-    Date_inscription	DATE			not null,
+    Date_inscription	TIMESTAMP		not null default CURRENT_TIMESTAMP,
     PRIMARY KEY (Id_eleve)
 );
 
@@ -21,16 +21,20 @@ CREATE TABLE IF NOT EXISTS Eleve
 CREATE TABLE IF NOT EXISTS Recette
 (
     Id_recette			int				not null AUTO_INCREMENT,
-    Nom_recette			varchar(20)		not null,
+    Nom_recette			varchar(100)	not null,
     Budget				float			not null,
     Difficulte			int				not null,
     Temps_preparation	int				not null,
     Temps_cuisson		int				not null,
-    Etapes				varchar(2000)	not null,
-    Categorie_recette	varchar(20)		not null,
-    Id_eleve			int				not null,
+    Nb_personnes		int				not null,
+    Etapes				varchar(5000)	not null,
+    Categorie_recette	varchar(30)		not null,
+    Id_eleve			int,
+    Date_recette		TIMESTAMP		not null default CURRENT_TIMESTAMP,
+    Derniere_consult	TIMESTAMP		default 0,
     PRIMARY KEY (Id_recette),
-    FOREIGN KEY (Id_eleve) REFERENCES Eleve(Id_eleve) 
+    FOREIGN KEY (Id_eleve) REFERENCES Eleve(Id_eleve)
+		ON DELETE SET NULL 
 );
 
 -- ============================================================
@@ -39,7 +43,7 @@ CREATE TABLE IF NOT EXISTS Recette
 CREATE TABLE IF NOT EXISTS Ingredient
 (
     Id_ingredient 		int				not null AUTO_INCREMENT,
-    Nom_ingredient		varchar(20)		not null,
+    Nom_ingredient		varchar(30)		not null,
     Unite_mesure		varchar(20)		not null,
     PRIMARY KEY (Id_ingredient)
 );
@@ -52,10 +56,12 @@ CREATE TABLE IF NOT EXISTS Composer
     Id_recette			int				not null,
     Id_ingredient		int				not null,
     Quantite			float			not null,
-    Categorie_recette	varchar(20)		not null,
+    Categorie_recette	varchar(30)		not null,
     PRIMARY KEY (Id_recette, Id_ingredient),
-    FOREIGN KEY (Id_recette) REFERENCES Recette(Id_recette),
+    FOREIGN KEY (Id_recette) REFERENCES Recette(Id_recette)
+		ON DELETE CASCADE,
     FOREIGN KEY (Id_ingredient) REFERENCES Ingredient(Id_ingredient)
+		ON DELETE CASCADE
 );
 
 -- ============================================================
@@ -66,9 +72,12 @@ CREATE TABLE IF NOT EXISTS Commenter
     Id_eleve			int				not null,
     Id_recette			int				not null,
     Commentaire			varchar(1000)   not null,
-    PRIMARY KEY (Id_eleve, Id_recette),
-    FOREIGN KEY (Id_eleve) REFERENCES Eleve(Id_eleve),
+    Date_commentaire	TIMESTAMP		not null default CURRENT_TIMESTAMP,
+    PRIMARY KEY (Id_eleve, Id_recette, Date_commentaire),
+    FOREIGN KEY (Id_eleve) REFERENCES Eleve(Id_eleve)
+		ON DELETE CASCADE,
     FOREIGN KEY (Id_recette) REFERENCES Recette(Id_recette)
+		ON DELETE CASCADE
 );
 
 -- ============================================================
@@ -81,7 +90,20 @@ CREATE TABLE IF NOT EXISTS Avis
 	Note_qualite		TINYINT			not null,
 	Note_justesse		TINYINT			not null,
 	Note_respect		TINYINT			not null,
+	Date_avis			TIMESTAMP		not null default CURRENT_TIMESTAMP,
     PRIMARY KEY (Id_eleve, Id_recette),
-    FOREIGN KEY (Id_eleve) REFERENCES Eleve(Id_eleve),
+    FOREIGN KEY (Id_eleve) REFERENCES Eleve(Id_eleve)
+		ON DELETE CASCADE,
     FOREIGN KEY (Id_recette) REFERENCES Recette(Id_recette)
+		ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Image
+(
+	Id_image			int				not null AUTO_INCREMENT,
+	Id_recette			int				not null,
+	Date_image			TIMESTAMP		not null default CURRENT_TIMESTAMP,
+    PRIMARY KEY (Id_image),
+    FOREIGN KEY (Id_recette) REFERENCES Recette(Id_recette)
+		ON DELETE CASCADE
 );
