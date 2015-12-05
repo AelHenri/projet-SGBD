@@ -32,13 +32,22 @@ def recettes(Id_recette):
 	cursor.execute(query)
 	recette = cursor.fetchone()
 
-	query = "SELECT Commentaire, Date_commentaire, Nom_eleve FROM Recette NATURAL JOIN Commenter NATURAL JOIN Eleve WHERE Id_recette = '" + Id_recette + "'"
+	query = "SELECT Commentaire, Date_commentaire, Login_eleve FROM Recette NATURAL JOIN Commenter NATURAL JOIN Eleve WHERE Id_recette = '" + Id_recette + "'" 
 	cursor.execute(query)
 	commentaires = cursor.fetchall()
 
-	query = "SELECT * FROM Recette NATURAL JOIN Avis WHERE Id_recette = '" + Id_recette + "'"
+	query = "SELECT Note_qualite, Note_justesse, Note_respect, Date_avis, Avis_recette, Login_eleve, (Note_qualite+Note_justesse+Note_respect)/3 FROM Avis NATURAL JOIN Eleve WHERE Id_recette = '" + Id_recette + "'"
 	cursor.execute(query)
 	avis = cursor.fetchall()
-	return render_template('recette.html', recette=recette, commentaires=commentaires, avis=avis)
+
+	query = "SELECT avg( Note_qualite ), avg( Note_justesse ), avg( Note_respect ), (avg( Note_qualite ) + avg( Note_justesse ) + avg( Note_respect )) /3 FROM Recette LEFT OUTER JOIN Avis ON Avis.Id_recette = '" + Id_recette + "'"
+	cursor.execute(query)
+	notes = cursor.fetchone()
+
+	query = "SELECT COUNT(Date_avis) FROM Avis WHERE Id_recette = '" + Id_recette + "'"
+	cursor.execute(query)
+	NbAvis = cursor.fetchone()
+
+	return render_template('recette.html', recette=recette, commentaires=commentaires, avis=avis, notes=notes, nbavis=NbAvis)
 
 app.run(debug=True)

@@ -75,18 +75,22 @@
                         <p class="lead">Type de recette</p>
                         <div class="list-group">
                             <a href="/" class="list-group-item">Toutes catégories</a>
-                            <a href="/index/Entrees" class="list-group-item">Entrées</a>
-                            <a href="/index/Plats" class="list-group-item">Plats</a>
-                            <a href="/index/Desserts" class="list-group-item">Desserts</a>
-                            <a href="/index/Autres" class="list-group-item">Autres</a>
+                            <a href="/index/Aperitif" class="list-group-item">Apéritifs</a>
+                            <a href="/index/Entree" class="list-group-item">Entrées</a>
+                            <a href="/index/Plat principal" class="list-group-item">Plats</a>
+                            <a href="/index/Dessert" class="list-group-item">Desserts</a>
+                            <a href="/index/Autre" class="list-group-item">Autres</a>
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-9">
 
                     <div class="thumbnail">
+                        {% if recette[12] == None %}
                         <img class="img-responsive" src="http://placehold.it/800x300" alt="">
+                        {% else %}
+                        <img class="img-responsive" src="../static/images/recettes/{{recette[12]}}" alt="{{recette[13]}}">
+                        {% endif %}
                         <div class="caption-full">
                             <h4 class="pull-right">Budget : {{recette[2]}}€</h4>
                             <h4><a href="#">{{recette[1]}}</a>
@@ -94,15 +98,51 @@
                             <p>{{recette[7]}}</p>
                         </div>
                         <div class="ratings">
-                            <p class="pull-right">3 reviews</p>
-                            <p>
+                            {% if notes[0] != None%}
+                            <p class="pull-right">{{ nbavis[0] }} reviews</p>
+                            <p> Note de qualité :
+                                {% for i in range(1,6) %}
+                                {% if notes[0]!= None %}
+                                {% if (i <= notes[0]) %}
                                 <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
+                                {% else %}
                                 <span class="glyphicon glyphicon-star-empty"></span>
-                                4.0 stars
+                                {% endif %}
+                                {% else %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% endif %}
+                                {% endfor %}
+                                {{notes[0]|round(2, 'floor')}} stars
                             </p>
+                            <p> Note de justesse :
+                                {% for i in range(1,6) %}
+                                {% if notes[1]!= None %}
+                                {% if (i <= notes[1]) %}
+                                <span class="glyphicon glyphicon-star"></span>
+                                {% else %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% endif %}
+                                {% else %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% endif %}
+                                {% endfor %}
+                                {{notes[1]|round(2, 'floor')}} stars
+                            </p>
+                            <p> Note de respect :
+                                {% for i in range(1,6) %}
+                                {% if notes[2]!= None %}
+                                {% if (i <= notes[2]) %}
+                                <span class="glyphicon glyphicon-star"></span>
+                                {% else %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% endif %}
+                                {% else %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% endif %}
+                                {% endfor %}
+                                {{notes[2]|round(2, 'floor')}} stars
+                            </p>
+                            {% endif %}
                         </div>
                     </div>
 
@@ -113,52 +153,74 @@
                             <div class="text-right">
                                 <a class="btn btn-success">Laisser un avis</a>
                             </div>
-
+                            
+                            {% for a in avis %}
                             <hr>
 
                             <div class="row">
                                 <div class="col-md-12">
+                                    {% for i in range(1,6) %}
+                                    {% if a[6]!= None %}
+                                    {% if (i <= a[6]) %}
                                     <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
+                                    {% else %}
                                     <span class="glyphicon glyphicon-star-empty"></span>
-                                    Anonymous
-                                    <span class="pull-right">10 days ago</span>
-                                    <p>This product was great in terms of quality. I would definitely buy another!</p>
+                                    {% endif %}
+                                    {% else %}
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {{a[5]}}
+                                    <span class="pull-right">{{a[3]}}</span>
+                                    <p>{{a[4]}}</p>
+                                    <p> Note de qualité :
+                                        {% for i in range(1,6) %}
+                                        {% if a[0]!= None %}
+                                        {% if (i <= a[0]) %}
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        {% else %}
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        {% endif %}
+                                        {% else %}
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        {% endif %}
+                                        {% endfor %}
+                                        {{a[0]|round(2, 'floor')}} stars
+                                    </p>
+                                    <p> Note de justesse :
+                                        {% for i in range(1,6) %}
+                                        {% if a[1]!= None %}
+                                        {% if (i <= a[1]) %}
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        {% else %}
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        {% endif %}
+                                        {% else %}
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        {% endif %}
+                                        {% endfor %}
+                                        {{a[1]|round(2, 'floor')}} stars
+                                    </p>
+                                    <p> Note de respect :
+                                        {% for i in range(1,6) %}
+                                        {% if a[2]!= None %}
+                                        {% if (i <= a[2]) %}
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        {% else %}
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        {% endif %}
+                                        {% else %}
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        {% endif %}
+                                        {% endfor %}
+                                        {{a[2]|round(2, 'floor')}} stars
+                                    </p>
                                 </div>
                             </div>
+                            {% endfor %}
 
-                            <hr>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    Anonymous
-                                    <span class="pull-right">12 days ago</span>
-                                    <p>I've alredy ordered another one!</p>
-                                </div>
-                            </div>
-
-                            <hr>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    Anonymous
-                                    <span class="pull-right">15 days ago</span>
-                                    <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
-                                </div>
-                            </div>
-
+                            <hr >
+                            
                         </div>
                     </div>
                     
@@ -247,4 +309,4 @@
 
     </body>
 
-</html>
+    </html>

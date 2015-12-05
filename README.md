@@ -19,13 +19,16 @@ sudo apt-get install python-pip
 sudo apt-get install libmysqlclient-dev
 pip install mysql-python
 pip install Flask
-python ez_setup.py
+python ez_setup.py (optionnel, si la suite ne marche pas)
 pip install flask-mysql
 chmod 700 run.py
 
 Setup mysql
 ===========
 mysql -u root -p
-CREATE DATABASE ProjetSGBD
-\. creation_base
-\. donnees_etendues
+CREATE DATABASE ProjetSGBD;
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
+GRANT ALL PRIVILEGES ON * . * TO 'admin'@'localhost';
+FLUSH PRIVILEGES;
+\. creation_base.sql
+\. donnees_etendues.sql
