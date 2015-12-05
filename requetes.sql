@@ -2,42 +2,6 @@
 -- OK	suppression Eleve -> suppression Commentaires et Avis associés
 --		suppression Recette -> suppression Images associées
 --
---
---
---
---
---
-
-
--- insertion
-insert into Eleve (Nom_eleve,Prenom_eleve) values ("Gangloff", "Nolwenn");
-insert into Eleve (Nom_eleve,Prenom_eleve,Date_inscription) values ("Gruchet", "Seb", "1994-03-13");
-
-
-insert into Recette (Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,Etapes,Categorie_recette,Id_eleve)
-values ("Tiramisu", 30, 2,15,0,"battez les oeufs, mettez le mascarpone","Dessert",1);
-
-
-
-insert into Recette (Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,Etapes,Categorie_recette,Id_eleve)
-values ("Tiramisu", 30, 2,15,0,"battez les oeufs, mettez le mascarpone","Dessert",3);
-
-
-insert into Commenter (Id_eleve,Id_recette, Commentaire) values (1,1,"C'est de la balle !");
-insert into Commenter (Id_eleve,Id_recette, Commentaire) values (1,1,"et puis c'est bon !");
-
-
-select Eleve.Nom_eleve
-from Eleve
-natural join Commenter,
-natural join Recette
-group by Eleve.Nom_eleve;
-
-
-select *
-from Ingredient
-natural join Composer
-where Ingredient.Id_ingredient = 34;
 
 
 -- liste des recettes utilisant du poivre
@@ -51,10 +15,9 @@ from Recette
 where Id_eleve = 1;
 
 -- nombres recettes dispo pour chaque catégorie
-select *
-from Recette
-where Categorie_recette = "Dessert";
-
+SELECT count( * )
+FROM Recette
+WHERE Categorie_recette = "dessert"
 
 -- classement des recettes selon le meilleur rapport qualité/prix
 -- (on pourra supposer par exemple qu’une recette non commenté a une note par défaut de 2)
@@ -69,8 +32,46 @@ order by (Temps_preparation + Temps_cuisson) DESC;
 
 
 -- classement des plats les plus commentés
-
+select Nom_recette, count(Commentaire) as Nombre_Commentaires
+from Recette
+left outer join Commenter
+on Recette.Id_recette = Commenter.Id_recette
+group by Nom_recette
+order by Nombre_Commentaires DESC;
 
 
 -- on souhaite décerner le prix du critique gastronomique le plus fiable :
--- calculer l’élève dont l’écart type des notes à la moyenne de chacun des plats qu’il a commenté est le plus faible
+-- calculer l’élève dont l’écart type des notes à la moyenne de chacun des plats 
+-- qu’il a commenté est le plus faible
+
+-- calcul moyenne notes plats
+SELECT Nom_recette, avg(Note_qualite), avg(Note_justesse), avg(Note_respect)
+FROM Avis, Recette
+WHERE Avis.Id_recette = Recette.Id_recette
+group by Nom_recette;
+
+-- calcul note globale recette
+SELECT Nom_recette, (avg( Note_qualite ) + avg( Note_justesse ) + avg( Note_respect )) /3 AS Note
+FROM Avis, Recette
+WHERE Avis.Id_recette = Recette.Id_recette
+GROUP BY Nom_recette
+
+
+select Eleve.Id_eleve,Nom_eleve,Note_qualite,Note_justesse,Note_respect
+from Eleve,Avis,Recette
+where Eleve.Id_eleve = Avis.Id_eleve and Avis.Id_recette = Recette.Id_recette
+group by Eleve.Id_eleve,Nom_eleve;
+
+SELECT Eleve.Id_eleve, Nom_eleve, avg( Note_qualite ) , avg( Note_justesse ) , avg( Note_respect )
+FROM Eleve, Avis, Recette
+WHERE Eleve.Id_eleve = Avis.Id_eleve
+AND Avis.Id_recette = Recette.Id_recette
+GROUP BY Eleve.Id_eleve, Nom_eleve
+
+
+
+-- afficher par eleve tous ses avis et la moyenne globale des recettes
+select Eleve.Id_eleve,Nom_eleve,(Note_qualite+Note_justesse+Note_respect) / 3 as NoteEleve
+from Eleve,Avis,Recette
+where Eleve.Id_eleve = Avis.Id_eleve and Avis.Id_recette = Recette.Id_recette
+
