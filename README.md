@@ -16,6 +16,7 @@ Setup Flask and mysql-python
 ============================
 
 sudo apt-get install python-pip
+sudo apt-get install libmysqlclient-dev
 pip install mysql-python
 pip install Flask
 python ez_setup.py
