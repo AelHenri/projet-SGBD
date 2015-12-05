@@ -66,44 +66,57 @@ insert into Eleve(Nom_eleve,Prenom_eleve) values ("Durut","Clotilde");
 insert into Eleve(Nom_eleve,Prenom_eleve) values ("Habrant","Thomas");
 insert into Eleve(Nom_eleve,Prenom_eleve) values ("Gangloff","Nolwenn");
 
-insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Etapes,Categorie_recette,Id_Eleve)
+
+-- Recette
+
+insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Url_image,Etapes,Categorie_recette,Id_Eleve)
 values ("Hachis parmentier", 7, 2, 25, 15, 4,
+"1.jpg",
 "Faire revenir les oignons hâchés et les gousses d'ail mixées avec un bon morceau de beurre. Ajouter les tomates coupées en dés, la viande hâchée, 1 cuillère à soupe de farine, sel, poivre, herbes de provence. Quand tout est cuit, couper le feu et ajouter le jaune d'oeuf et un peu de parmesan. Bien mélanger. Etaler au fond du plat à gratin. Préparer la purée. Etaler au dessus de la viande. Saupoudrer de fromage râpé et mettre au four à gratiner.","Plat principal",1);
 
-insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Etapes,Categorie_recette,Id_Eleve)
+insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Url_image,Etapes,Categorie_recette,Id_Eleve)
 values ("Quiche Lorraine", 8, 2, 15, 45, 4,
+"2.jpg",
 "Etaler la pâte dans un moule, piquer à la fourchette. Faire rissoler les lardons à la poêle puis les répartir sur le fond de pâte. Parsemer de copeaux de beurre. Battre les oeufs, la crème fraîche et le lait, assaisonner avec le sel, le poivre et la muscade. Verser sur la pâte. Faire cuire 45 à 50 min au four à 180°C (thermostat 6).","Plat principal",1);
 
-insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Etapes,Categorie_recette,Id_Eleve)
+insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Url_image,Etapes,Categorie_recette,Id_Eleve)
 values ("Spaghetti carbonara", 6, 2, 5, 15, 6,
+"3.jpg",
 "Faire cuire les pâtes dans une grande casserole d'eau salée, le temps indiqué sur le paquet. Pendant ce temps, casser les oeufs dans un récipient, ajouter le parmesan râpé, et battre le tout; saler et poivrer. Faire cuire les lardons. Une fois les pâtes cuites, les égoutter, mais pas trop (toujours garder un peu d'eau pour les pâtes en sauce). Ajouter les lardons, avec leur jus de cuisson, porter à feu très doux et y ajouter la préparation (oeuf, parmesan) en remuant sans arrêt. Eteindre le feu avant que la préparation devienne trop sèche ! Servir chaud, avec un peu de parmesan râpé en plus.","Plat principal",1);
 
-insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Etapes,Categorie_recette,Id_Eleve)
+insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Url_image,Etapes,Categorie_recette,Id_Eleve)
 values ("Lasagnes au saumon et epinards", 15, 3, 15, 25, 4,
+"4.jpg",
 "Faire décongeler les épinards suffisamment longtemps à l'avance. Préchauffer le four (210°C). Mettre un peu de beurre dans un plat rectangulaire ou carré allant au four, puis une couche de lasagnes, une couche de saumon, une couche d'épinards et un peu de parmesan. Recommencer l'opération jusqu'à la fin des ingrédients. Verser la crème liquide préalablement salée et poivrée. Remettre un peu de parmesan puis cuire à four chaud pendant 25 mn.","Plat principal",1);
 
-insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Etapes,Categorie_recette,Id_Eleve)
+insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Url_image,Etapes,Categorie_recette,Id_Eleve)
 values ("Fondant au chocolat", 5, 2, 15, 20, 8,
+"5.jpg",
 "Faire fondre le chocolat et le beurre au bain marie à feu doux, ou au micro ondes sur le programme 'décongélation'. Quand c'est bien fondu, ajouter les jaunes d’oeufs. Bien battre. Ajouter ensuite le sucre et la farine, puis incorporer les blancs d’oeufs montés en neige bien fermes. Bien graisser et fariner un moule à manqué. Cuire à four moyen (180°C environ) pendant 20 min.","Dessert",1);
 
-insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Etapes,Categorie_recette,Id_Eleve)
+insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Url_image,Etapes,Categorie_recette,Id_Eleve)
 values ("Canneles bordelais", 5, 4, 15, 75, 16,
+"6.jpg",
 "Faire bouillir le lait avec la vanille et le beurre. Pendant ce temps, mélanger la farine, le sucre puis incorporer les œufs d'un seul coup, verser ensuite le lait bouillant. Mélanger doucement afin d'obtenir une pâte fluide comme une pâte à crêpes, laisser refroidir, puis ajouter le rhum. Placer au réfrigérateur une heure. Préchauffer le four à thermostat 8 (240°C) avec la tôle sur laquelle cuiront les cannelés (si vous utilisez un moule en silicone, mettez le four à maximum 220°C (thermostat 6-7). Verser la pâte bien refroidie dans les moules bien beurrés, en ne les remplissant qu'à moitié; rapidement, disposer les cannelés sur la tôle du four chaud à 240°C pendant 12 minutes (20 minutes à 220°C avec un moule en silicone), puis baisser le thermostat à 6 (180°C) et continuer la cuisson pendant 1 heure : le cannelé doit avoir une croûte brune et un intérieur bien moelleux. Démouler encore chaud.","Dessert",1);
 
-insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Etapes,Categorie_recette,Id_Eleve)
+insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Url_image,Etapes,Categorie_recette,Id_Eleve)
 values ("Croque-monsieur", 3, 1, 10, 10, 4,
+"7.jpg",
 "Beurrez les 8 tranches de pain de mie sur une seule face. Posez 1 tranche de fromage sur chaque tranche de pain de mie. Posez 1 tranche de jambon plié en deux sur 4 tranches de pain de mie. Recouvrez avec les autres tartines (face non beurrée au dessus). Dans un bol mélanger le fromage râpé avec le lait, le sel, le poivre et la muscade.Répartissez le mélange sur les croque-monsieur. Placez sur une plaque au four sous le grill pendant 10 mn.","Plat principal",1);
 
-insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Etapes,Categorie_recette,Id_Eleve)
+insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Url_image,Etapes,Categorie_recette,Id_Eleve)
 values ("Mararons framboises et myrtilles", 6, 5, 30, 12, 6,
+"8.jpg",
 "Mélangez le sucre glace et la poudre d'amandes puis les tamiser pour enlever les gros grain de poudre d'amande. Montez les blancs d'œufs avec le sucre puis versez quelques gouttes de colorant rose. Versez le mélange poudre d'amande et sucre glace sur les blancs en neige et mélangez délicatement. Mettre le mélange dans une poche à douille et faire des petits ronds sur une plaque avec du papier sulfurisé et laissez reposer 30 minutes à l'air libre. Enfournez à 180°C pendant 12 minutes. Laissez refroidir les macarons et décollez-les. Mixez myrtilles, framboises et crème fraîche. Garnissez avec le mélange framboises myrtilles à l'aide d'une poche à douille. Collez les deux par deux.","Dessert",1);
 
-insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Etapes,Categorie_recette,Id_Eleve)
+insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Url_image,Etapes,Categorie_recette,Id_Eleve)
 values ("Soupe de champignons", 4, 2, 15, 25, 5,
+"9.jpg",
 "Dans une cocotte, faire revenir dans un peu de beurre : les champignons, les pommes de terres, l'oignon émincé et l'ail émincé.Laisser revenir quelques minutes pour faire suer les champignons en remuant bien. Une fois le tout revenu, mettre un peu plus d'eau que le niveau de légumes et laisser frémir à feu doux en mélangeant de temps en temps. Ajouter sel, poivre, muscade et persil ainsi que le bouillon émietté. Une fois la soupe cuite, ajouter la crème mélanger et mixer la soupe. Servir chaud.","Entree",1);
 
-insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Etapes,Categorie_recette,Id_Eleve)
+insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Url_image,Etapes,Categorie_recette,Id_Eleve)
 values ("Tatin de magret de canard au foie gras",6, 4, 15, 10, 1,
+"10.jpg",
 "Eplucher la pomme, la couper en tranches 'demi-lune', les faire revenir avec le beurre 5 mn. Prendre une petite timbale, mettre une couche de pommes, 2 tranches de magret, des pommes, les 2 morceaux de magret et finir par les pommes. Ajouter la cuillère de calvados.  Passer à four chaud 5 mn. Démouler sur le pain de mie grillé, puis recouvrir de la tranche de foie gras. Servir chaud.","Entree",1);
 
 -- COMPOSER
@@ -199,19 +212,34 @@ insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values
 insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (10, 3,5,"secondaire");
 
 
+-- COMMENTER
 
+insert into Commenter(Id_eleve,Id_recette,commentaire)
+values (1,2,"C'est cool dis donc, ça a l'air appétissant !");
+insert into Commenter(Id_eleve,Id_recette,commentaire)
+values (1,5,"J'ai trouvé ce que je vais bouffer ce soir, thanks !);");
+insert into Commenter(Id_eleve,Id_recette,commentaire)
+values (2,1,"Ca a pas l'air appétissant...");
+insert into Commenter(Id_eleve,Id_recette,commentaire)
+values (3,1,"COMME TA MERE");
+insert into Commenter(Id_eleve,Id_recette,commentaire)
+values (4,1,"on avait dit pas les mamans !");
+insert into Commenter(Id_eleve,Id_recette,commentaire)
+values (3,9,"Mooiiii j'aime la forêttttt");
+insert into Commenter(Id_eleve,Id_recette,commentaire)
+values (1,6,"A TABLE");
 
 -- Avis
 
 insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avis_recette)
-values (1,3,2,1,2,"Recette de merde");
+values (1,3,2,1,2,"Recette qui mériterait davantage d'explications.");
 insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avis_recette)
-values (1,2,1,0,1,"Recette encore plus de merde");
+values (1,2,1,0,1,"La pauvreté des explications laissent à désirer.");
 insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avis_recette)
-values (2,2,4,3,3,"Potable");
+values (2,2,4,3,3,"Recette apétissante et correctement expliquée. Néanmoins, justesse du prix à revoir.");
 insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avis_recette)
-values (3,3,1,0,1,"PAs aimé");
+values (3,3,1,0,1,"Recette médiocre et plat médiocre.");
 insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avis_recette)
-values (4,3,2,3,4,"Ca peut aller");
+values (4,3,2,3,4,"Ca manque d'explication et les étapes ne sont pas suffisamment décrites...");
 insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avis_recette)
-values (3,5,5,4,4,"Ca déchire grave");
+values (3,5,5,4,4,"Ca déchire grave !");

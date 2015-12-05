@@ -32,9 +32,12 @@ CREATE TABLE IF NOT EXISTS Recette
     Id_eleve			int,
     Date_recette		TIMESTAMP		not null default CURRENT_TIMESTAMP,
     Derniere_consult	TIMESTAMP		default 0,
-    PRIMARY KEY (Id_recette),
+ 	Url_image			varchar(200)	default null,
+	Alt_image			varchar(200)	,
+	PRIMARY KEY (Id_recette),
     FOREIGN KEY (Id_eleve) REFERENCES Eleve(Id_eleve)
-		ON DELETE SET NULL 
+		ON DELETE SET NULL
+		ON UPDATE CASCADE
 );
 
 -- ============================================================
@@ -59,9 +62,11 @@ CREATE TABLE IF NOT EXISTS Composer
     Categorie_recette	varchar(30)		not null,
     PRIMARY KEY (Id_recette, Id_ingredient),
     FOREIGN KEY (Id_recette) REFERENCES Recette(Id_recette)
-		ON DELETE CASCADE,
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
     FOREIGN KEY (Id_ingredient) REFERENCES Ingredient(Id_ingredient)
 		ON DELETE CASCADE
+		ON UPDATE CASCADE
 );
 
 -- ============================================================
@@ -75,9 +80,11 @@ CREATE TABLE IF NOT EXISTS Commenter
     Date_commentaire	TIMESTAMP		not null default CURRENT_TIMESTAMP,
     PRIMARY KEY (Id_eleve, Id_recette, Date_commentaire),
     FOREIGN KEY (Id_eleve) REFERENCES Eleve(Id_eleve)
-		ON DELETE CASCADE,
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
     FOREIGN KEY (Id_recette) REFERENCES Recette(Id_recette)
 		ON DELETE CASCADE
+		ON UPDATE CASCADE
 );
 
 -- ============================================================
@@ -90,21 +97,13 @@ CREATE TABLE IF NOT EXISTS Avis
 	Note_qualite		TINYINT			not null,
 	Note_justesse		TINYINT			not null,
 	Note_respect		TINYINT			not null,
-	Avis_recette		varchar(1000)	not null,
 	Date_avis			TIMESTAMP		not null default CURRENT_TIMESTAMP,
+	Avis_recette		varchar(1000)	not null,
     PRIMARY KEY (Id_eleve, Id_recette),
     FOREIGN KEY (Id_eleve) REFERENCES Eleve(Id_eleve)
-		ON DELETE CASCADE,
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
     FOREIGN KEY (Id_recette) REFERENCES Recette(Id_recette)
 		ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS Image
-(
-	Id_image			int				not null AUTO_INCREMENT,
-	Id_recette			int				not null,
-	Date_image			TIMESTAMP		not null default CURRENT_TIMESTAMP,
-    PRIMARY KEY (Id_image),
-    FOREIGN KEY (Id_recette) REFERENCES Recette(Id_recette)
-		ON DELETE CASCADE
+		ON UPDATE CASCADE
 );
