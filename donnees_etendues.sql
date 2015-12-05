@@ -55,16 +55,16 @@ insert into Ingredient(Nom_ingredient,Unite_mesure) values ("viande hachee","g")
 
 -- Eleve(Nom_eleve,Prenom_eleve)
 
-insert into Eleve(Nom_eleve,Prenom_eleve) values ("Bort","William");
-insert into Eleve(Nom_eleve,Prenom_eleve) values ("Soupey","Sebastien");
-insert into Eleve(Nom_eleve,Prenom_eleve) values ("Toussaint","Henri");
-insert into Eleve(Nom_eleve,Prenom_eleve) values ("Gruchet","Sebastien");
-insert into Eleve(Nom_eleve,Prenom_eleve) values ("Renauld","Vincent");
-insert into Eleve(Nom_eleve,Prenom_eleve) values ("Boirin","Tom");
-insert into Eleve(Nom_eleve,Prenom_eleve) values ("Le Clercq De Lannoy","Laure");
-insert into Eleve(Nom_eleve,Prenom_eleve) values ("Durut","Clotilde");
-insert into Eleve(Nom_eleve,Prenom_eleve) values ("Habrant","Thomas");
-insert into Eleve(Nom_eleve,Prenom_eleve) values ("Gangloff","Nolwenn");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Bort","William","wbort");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Soupey","Sebastien","ssoupey");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Toussaint","Henri","htoussaint");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Gruchet","Sebastien","sgruchet");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Renauld","Vincent","vrenauld");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Boirin","Tom","tboirin");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Le Clercq De Lannoy","Laure","llannoy");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Durut","Clotilde","cdurut");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Habrant","Thomas","thabrant");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Gangloff","Nolwenn","nganglof");
 
 
 -- Recette
