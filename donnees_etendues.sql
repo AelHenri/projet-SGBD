@@ -114,9 +114,8 @@ values ("Soupe de champignons", 4, 2, 15, 25, 5,
 "9.jpg",
 "Dans une cocotte, faire revenir dans un peu de beurre : les champignons, les pommes de terres, l'oignon émincé et l'ail émincé.Laisser revenir quelques minutes pour faire suer les champignons en remuant bien. Une fois le tout revenu, mettre un peu plus d'eau que le niveau de légumes et laisser frémir à feu doux en mélangeant de temps en temps. Ajouter sel, poivre, muscade et persil ainsi que le bouillon émietté. Une fois la soupe cuite, ajouter la crème mélanger et mixer la soupe. Servir chaud.","Entree",1);
 
-insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Url_image,Etapes,Categorie_recette,Id_Eleve)
+insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Etapes,Categorie_recette,Id_Eleve)
 values ("Tatin de magret de canard au foie gras",6, 4, 15, 10, 1,
-"10.jpg",
 "Eplucher la pomme, la couper en tranches 'demi-lune', les faire revenir avec le beurre 5 mn. Prendre une petite timbale, mettre une couche de pommes, 2 tranches de magret, des pommes, les 2 morceaux de magret et finir par les pommes. Ajouter la cuillère de calvados.  Passer à four chaud 5 mn. Démouler sur le pain de mie grillé, puis recouvrir de la tranche de foie gras. Servir chaud.","Entree",1);
 
 -- COMPOSER
