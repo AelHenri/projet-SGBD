@@ -1,19 +1,4 @@
 -- ============================================================
---    suppression des donnees
--- ============================================================
-
-delete from AVIS ;
-delete from COMPOSER ;
-delete from COMMENTER ;
-delete from Ingredient(Nom_ingredient,Unite_mesure) ;
-delete from Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Etapes,Categorie_recette,Id_Eleve) ;
-delete from Eleve(Nom_eleve,Prenom_eleve) ;
-
-commit ;
-
-
-
--- ============================================================
 --    creation des donnees
 -- ============================================================
 
@@ -215,25 +200,18 @@ insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values
 
 
 
--- COMMENTER
 
-insert into COMMENTER values (
-insert into COMMENTER values (
-insert into COMMENTER values (
-insert into COMMENTER values (
-insert into COMMENTER values (
-insert into COMMENTER values (
-insert into COMMENTER values (
-insert into COMMENTER values (
+-- Avis
 
--- AVIS
-
-insert into AVIS values (
-insert into AVIS values (
-insert into AVIS values (
-insert into AVIS values (
-insert into AVIS values (
-insert into AVIS values (
-insert into AVIS values (
-insert into AVIS values (
-
+insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avis_recette)
+values (1,3,2,1,2,"Recette de merde");
+insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avis_recette)
+values (1,2,1,0,1,"Recette encore plus de merde");
+insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avis_recette)
+values (2,2,4,3,3,"Potable");
+insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avis_recette)
+values (3,3,1,0,1,"PAs aimé");
+insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avis_recette)
+values (4,3,2,3,4,"Ca peut aller");
+insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avis_recette)
+values (3,5,5,4,4,"Ca déchire grave");

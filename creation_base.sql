@@ -90,6 +90,7 @@ CREATE TABLE IF NOT EXISTS Avis
 	Note_qualite		TINYINT			not null,
 	Note_justesse		TINYINT			not null,
 	Note_respect		TINYINT			not null,
+	Avis_recette		varchar(1000)	not null,
 	Date_avis			TIMESTAMP		not null default CURRENT_TIMESTAMP,
     PRIMARY KEY (Id_eleve, Id_recette),
     FOREIGN KEY (Id_eleve) REFERENCES Eleve(Id_eleve)
