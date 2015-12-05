@@ -21,7 +21,11 @@ WHERE Categorie_recette = "dessert"
 
 -- classement des recettes selon le meilleur rapport qualité/prix
 -- (on pourra supposer par exemple qu’une recette non commenté a une note par défaut de 2)
-
+select Recette.Nom_recette, avg(Avis.Note_qualite/Recette.budget) as QualitePrix
+from Recette, Avis
+where Recette.Id_recette=Avis.Id_recette
+group by Recette.Id_recette
+order by QualitePrix DESC;
 
 
 -- classement des desserts les plus rapides à réaliser
