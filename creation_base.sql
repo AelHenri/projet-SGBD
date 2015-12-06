@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS Eleve
     Login_eleve			varchar(20)		not null,
     Date_inscription	TIMESTAMP		not null default CURRENT_TIMESTAMP,
     Mot_de_passe		varchar(20)		not null,
+    UNIQUE (Login_Eleve),
     PRIMARY KEY (Id_eleve)
 );
 
