@@ -8,10 +8,11 @@
 -- ============================================================
 CREATE TABLE IF NOT EXISTS Eleve
 (
-    Id_eleve			int				not null AUTO_INCREMENT,
+    Id_eleve			int			not null AUTO_INCREMENT,
     Nom_eleve			varchar(20)		not null,
     Prenom_eleve		varchar(20)		not null,
     Login_eleve			varchar(20)		not null,
+    Mot_de_passe		varchar(20)		not null,
     Date_inscription	TIMESTAMP		not null default CURRENT_TIMESTAMP,
     PRIMARY KEY (Id_eleve)
 );
@@ -60,7 +61,7 @@ CREATE TABLE IF NOT EXISTS Composer
     Id_recette			int				not null,
     Id_ingredient		int				not null,
     Quantite			float			not null,
-    Categorie_recette	varchar(30)		not null,
+    Categorie_ingredient	varchar(30)		not null,
     PRIMARY KEY (Id_recette, Id_ingredient),
     FOREIGN KEY (Id_recette) REFERENCES Recette(Id_recette)
 		ON DELETE CASCADE

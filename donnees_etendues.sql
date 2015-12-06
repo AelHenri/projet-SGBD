@@ -55,16 +55,16 @@ insert into Ingredient(Nom_ingredient,Unite_mesure) values ("viande hachee","g")
 
 -- Eleve(Nom_eleve,Prenom_eleve)
 
-insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Bort","William","wbort");
-insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Soupey","Sebastien","ssoupey");
-insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Toussaint","Henri","htoussaint");
-insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Gruchet","Sebastien","sgruchet");
-insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Renauld","Vincent","vrenauld");
-insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Boirin","Tom","tboirin");
-insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Le Clercq De Lannoy","Laure","llannoy");
-insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Durut","Clotilde","cdurut");
-insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Habrant","Thomas","thabrant");
-insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve) values ("Gangloff","Nolwenn","nganglof");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve,Mot_de_passe) values ("Bort","William","wbort","CouCou");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve,Mot_de_passe) values ("Soupey","Sebastien","ssoupey","CouCou");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve,Mot_de_passe) values ("Toussaint","Henri","htoussaint","CouCou");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve,Mot_de_passe) values ("Gruchet","Sebastien","sgruchet","CouCou");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve,Mot_de_passe) values ("Renauld","Vincent","vrenauld","CouCou");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve,Mot_de_passe) values ("Boirin","Tom","tboirin","CouCou");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve,Mot_de_passe) values ("Le Clercq De Lannoy","Laure","llannoy","CouCou");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve,Mot_de_passe) values ("Durut","Clotilde","cdurut","CouCou");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve,Mot_de_passe) values ("Habrant","Thomas","thabrant","CouCou");
+insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve,Mot_de_passe) values ("Gangloff","Nolwenn","nganglof","CouCou");
 
 
 -- Recette
@@ -120,95 +120,95 @@ values ("Tatin de magret de canard au foie gras",6, 4, 15, 10, 1,
 
 -- COMPOSER
 
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (1, 29, "2", "assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (1, 1,  2 , "assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (1, 3,  50 , "secondaire");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (1, 45,  260 , "secondaire");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (1, 47,  400 , "principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (1, 12,  100 , "secondaire");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (1, 41, 10 ,"assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (1, 34, 10 ,"assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (1, 18, 10 ,"assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (1, 20, 1 ,"secondaire");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (1, 31, 25 ,"assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (1, 38, 300 ,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (1, 15, 300 ,"principal");	
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (1, 29, "2", "assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (1, 1,  2 , "assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (1, 3,  50 , "secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (1, 45,  260 , "secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (1, 47,  400 , "principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (1, 12,  100 , "secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (1, 41, 10 ,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (1, 34, 10 ,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (1, 18, 10 ,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (1, 20, 1 ,"secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (1, 31, 25 ,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (1, 38, 300 ,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (1, 15, 300 ,"principal");	
 
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (2, 32, 200 ,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (2, 23, 200 ,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (2, 3, 30 ,"secondaire");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (2, 28, 3 ,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (2, 9, 20 ,"secondaire");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (2, 22, 20 ,"secondaire");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (2, 41, 10 ,"assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (2, 34, 10 ,"assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (2, 26,10,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (2, 32, 200 ,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (2, 23, 200 ,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (2, 3, 30 ,"secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (2, 28, 3 ,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (2, 9, 20 ,"secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (2, 22, 20 ,"secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (2, 41, 10 ,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (2, 34, 10 ,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (2, 26,10,"assaisonnement");
 
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (3, 42,500,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (3, 23,250,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (3, 28,6,"secondaire");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (3, 31,10,"assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (3, 34,10,"assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (3, 41,10,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (3, 42,500,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (3, 23,250,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (3, 28,6,"secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (3, 31,10,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (3, 34,10,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (3, 41,10,"assaisonnement");
 
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (4, 24,300,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (4, 40,300,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (4, 11,500,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (4, 31,10,"assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (4, 10,50,"secondaire");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (4, 34,10,"assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (4, 41,10,"assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (4, 3,20,"secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (4, 24,300,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (4, 40,300,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (4, 11,500,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (4, 31,10,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (4, 10,50,"secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (4, 34,10,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (4, 41,10,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (4, 3,20,"secondaire");
 
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (5, 7,200,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (5, 3,100,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (5, 44,100,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (5, 28,5,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (5, 12,75,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (5, 7,200,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (5, 3,100,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (5, 44,100,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (5, 28,5,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (5, 12,75,"principal");
 
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (6, 22,50,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (6, 41,10,"assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (6, 20,2,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (6, 28,2,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (6, 46,1,"secondaire");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (6, 39,1,"secondaire");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (6, 12,100,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (6, 44,250,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (6, 3,50,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (6, 22,50,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (6, 41,10,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (6, 20,2,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (6, 28,2,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (6, 46,1,"secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (6, 39,1,"secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (6, 12,100,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (6, 44,250,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (6, 3,50,"principal");
 
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (7, 30,8,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (7, 19,200,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (7, 16,8,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (7, 17,100,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (7, 22,6,"secondaire");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (7, 26,5,"assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (7, 34,10,"assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (7, 41,10,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (7, 30,8,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (7, 19,200,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (7, 16,8,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (7, 17,100,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (7, 22,6,"secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (7, 26,5,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (7, 34,10,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (7, 41,10,"assaisonnement");
 
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (8, 37,125,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (8, 43,220,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (8, 4,4,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (8, 44,30,"secondaire");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (8, 8,3,"secondaire");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (8, 14,200,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (8, 27,100,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (8, 9,20,"secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (8, 37,125,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (8, 43,220,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (8, 4,4,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (8, 44,30,"secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (8, 8,3,"secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (8, 14,200,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (8, 27,100,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (8, 9,20,"secondaire");
 
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (9, 6,150,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (9, 35,600,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (9, 29,1,"secondaire");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (9, 1,4,"secondaire");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (9, 34,10,"assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (9, 41,10,"assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (9, 21,1,"assaisonnement");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (9, 10,20,"secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (9, 6,150,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (9, 35,600,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (9, 29,1,"secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (9, 1,4,"secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (9, 34,10,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (9, 41,10,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (9, 21,1,"assaisonnement");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (9, 10,20,"secondaire");
 
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (10, 36,150,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (10, 25,120,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (10, 30,1,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (10, 13,50,"principal");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (10, 5,1,"secondaire");
-insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_recette) values (10, 3,5,"secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (10, 36,150,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (10, 25,120,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (10, 30,1,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (10, 13,50,"principal");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (10, 5,1,"secondaire");
+insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (10, 3,5,"secondaire");
 
 
 -- COMMENTER

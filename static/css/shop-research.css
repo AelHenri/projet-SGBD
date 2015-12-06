@@ -1,0 +1,153 @@
+
+/*!
+ * Start Bootstrap - Shop Homepage HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
+.caption {
+    height: 130px;
+    overflow: hidden;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color:  #e65c00;
+}
+
+.thumbnail h4{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.thumbnail .image {
+    overflow: hidden;
+    max-height: 122px;
+}
+
+/*.thumbnail .image{
+    overflow: hidden;
+    max-height: 150px;
+    max-width: 300px;
+}
+*/
+.navbar {
+    background-color:  #e65c00;
+    border-color: #b34700;
+}
+
+.navbar .navbar-brand{
+    color: #e6e6e6;
+}
+
+.navbar .navbar-nav > li > a {
+    color: #e6e6e6;
+}
+
+.sidebar-outer {
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .sidebar {
+        position: fixed;
+    }
+}
+
+footer {
+    margin: 50px 0;
+}
+
+
+
+
+.research {
+	background-color:#E65C00;
+	padding:1em;
+	color:white;
+	height:6em;
+}
+
+.researchButtons {
+	background-color:#E65C00;
+	padding:0.5em;
+	margin-top:1em;
+	color: #5D2121;
+	height:3em;
+	text-align: center;
+
+}
+
+
+.research input, select{
+	color: #5D2121;
+}
+
+.research .inputnb, select {
+	width:9.5em;
+}
+.research .itemres {
+	padding:0.3em;
+}
+
+.research .itemdemi1 {
+	width:3.5em;
+}
+
+.research .itemdemi2 {
+	width:5.5em;
+}
+
+.resultres {
+	padding-top:2em;
+}
+.inputFull{
+	width:25em;
+}
+.tris{
+	background-color:#FF9E5E;
+	margin:0.5em 0 0.5em 0;
+	padding:0.5em 1em 0.5em 1em;
+	color:white;
+	height:2em;
+}
+
+.tris input{
+	color: #5D2121;
+	text-align:center;
+}

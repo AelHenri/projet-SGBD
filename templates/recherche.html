@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Recherche</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../static/css/shop-research.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Accueil</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#">About</a>
+                        </li>
+                    </ul>
+                    <div class="col-sm-3 col-md-3 pull-right">
+                        <form class="navbar-form" role="search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search" name="q">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>        
+                </div>
+
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+
+        <!-- Page Content -->
+        <div class="container">
+
+            <div class="row">
+				
+
+                <div class="col-md-3 sidebar-outer">
+                    <div class="sidebar">
+                        <p class="lead">Type de recette</p>
+                        <div class="list-group">
+                            <a href="/" class="list-group-item">Toutes catégories</a>
+                            <a href="/index/Aperitif" class="list-group-item">Apéritifs</a>
+                            <a href="/index/Entree" class="list-group-item">Entrées</a>
+                            <a href="/index/Plat principal" class="list-group-item">Plats</a>
+                            <a href="/index/Dessert" class="list-group-item">Desserts</a>
+                            <a href="/index/Autre" class="list-group-item">Autres</a>
+                        </div>
+                    </div>
+                </div>
+				
+                <div class="col-md-9">
+					<div class="row">
+
+						<form action="." method="POST">
+							<div class="research">	
+								
+								<div class="row">
+									<div class="col-sm-1 col-lg-1 col-md-1">
+										<div class="itemres">Catégorie</div>
+										<div class="itemres">Budget</div>
+									</div>
+					
+									<div class="col-sm-3 col-lg-3 col-md-3">
+										<select name="categorie" >
+											<option value="Tous">Tous</option>
+											<option value="Aperitif">Aperitifs</option>
+											<option value="Entree">Entrees</option>
+											<option value="Plat principal">Plats</option>
+											<option value="Dessert">Desserts</option>
+											<option value="Autre">Autres</option>
+										</select>
+										<br>
+										<select class="itemdemi1" name="minsupBud">
+											<option value="Tous"></option>
+											<option value=">=">>=</option>
+											<option value="<="><=</option>
+										</select>
+										<input class="itemdemi2" type="number" name="budget"  placeholder="Budget"	min="0"><br>						
+									</div>
+
+										
+									<div class="col-sm-1 col-lg-1 col-md-1">
+										<div class="itemres">Durée</div>
+										<div class="itemres">Difficulté</div>
+
+									</div>
+
+										
+									<div class="col-sm-3 col-lg-3 col-md-3">
+										<select class="itemdemi1" name="minsupDur">
+											<option value="Tous"></option>
+											<option value=">=">>=</option>
+											<option value="<="><=</option>
+										</select>
+										<input class="itemdemi2" type="number" name="duree"  placeholder="Durée" min="0"><br>
+
+										<select class="itemdemi1" name="minsupDif" >
+											<option value="0"></option>
+											<option value=">=">>=</option>
+											<option value="<="><=</option>
+										</select>
+										<input class="itemdemi2" type="number" name="difficulte" placeholder="Difficulté"	min="0" max="5"><br>
+
+									</div>
+
+									<div class="col-sm-3 col-lg-3 col-md-33">
+										<div class="itemres">Mots clés</div>
+										<input type="text" id="keywords" name="keywords" placeholder="carbo choco saumon" ><br>					
+									</div>
+								</div>
+							</div>
+							
+							<div class="researchButtons">
+								<div class="row">
+									<div class="col-sm-4 col-lg-4 col-md-4">
+										<select class="inputFull" name="tri">
+											<option value="Budget">Budget</option>
+											<option value="Difficulte">Difficulté</option>
+											<option value="Duree">Durée</option>
+											<option value="Note">Note</option>
+											<option value="COUNT(Date_avis)">Nombre d'avis</option>
+											<option value="COUNT(Date_commentaire)">Nombre de commentaires</option>
+										</select>
+									</div>
+									<div class="col-sm-4 col-lg-4 col-md-4">
+
+										<select class="inputFull" name="order">
+											<option value="ASC">par ordre croissant</option>
+											<option value="DESC">par ordre décroissant</option>
+										</select>									
+									</div>
+																		
+									<div class="col-sm-3 col-lg-3 col-md-3">
+										<input class="inputFull" type="submit" value="Rechercher">		
+										<input class="inputFull" type="reset" value="Reset">
+									</div>
+								</div>
+							</div>													
+						</form>
+				    </div>
+					
+					
+					<div class="row">
+						<div class="resultres">
+								{% for r in recettes %}
+								<div class="col-sm-4 col-lg-4 col-md-4">
+									<div class="thumbnail">
+										<div class="image">
+											{% if r[6] != None %}
+											<img src="{%if categorie != None%}../{%endif%}static/images/recettes/{{r[6]}}" alt="">
+											{% else %}
+											<img src="http://placehold.it/320x150" alt="">
+											{% endif %}
+										</div>
+										<div class="caption">
+											<!--<h4 class="pull-right">Budget : {{r[2]}}€</h4>-->
+											<h4><a href="/recette/{{r[0]}}">{{r[1]}}</a>
+											</h4>
+											<p>Nombre de personnes : {{r[2]}}<br />
+												Budget : {{r[3]}}€</p>
+											</div>
+											<div class="ratings">
+												<p class="pull-right">{{r[4]}} reviews</p>
+												<p>
+													{% for i in range(1,6) %}
+													{% if r[5]!= None %}
+													{% if (i <= r[5]) %}
+													<span class="glyphicon glyphicon-star"></span>
+													{% else %}
+													<span class="glyphicon glyphicon-star-empty"></span>
+													{% endif %}
+													{% else %}
+													<span class="glyphicon glyphicon-star-empty"></span>
+													{% endif %}
+													{% endfor %}
+												</p>
+											</div>
+										</div>
+									</div>
+									{% endfor %}
+
+								</div>
+
+						</div>
+					</div>
+                
+
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+        <div class="container">
+
+            <hr>
+
+            <!-- Footer -->
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12">
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+        <!-- /.container -->
+
+        <!-- jQuery -->
+        <script src="static/js/jquery.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="static/js/bootstrap.js"></script>
+
+    </body>
+
+    </html>
