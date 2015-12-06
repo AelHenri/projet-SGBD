@@ -129,16 +129,71 @@ def login():
 			return render_template("login.html", error="username")
 	return render_template("login.html")
 
-@app.route("/profil/<login>/edit")
+@app.route("/profil/<login>/edit", methods=['GET', 'POST'])
 @login_required
 def edit_profil(login):
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	query = "SELECT * FROM Eleve"
+	cursor.execute(query)
+	eleves = cursor.fetchall()
 
-	return render_template('profile.html')
+	if request.method == "POST":
+		firstname = request.form['firstname']
+		lastname = request.form['lastname']
+		login = request.form['login']
+		pwd = request.form['pwd']
+		cpwd = request.form['cpwd']
+
+		if login != current_user.login:
+			for e in eleves:
+				if login == e[3]:
+					return render_template('profile.html', error = "Login deja pris !")
+
+		if pwd != cpwd:
+			return render_template('profile.html', error = "Mots de passe differents !")
+
+		query = "UPDATE Eleve SET Nom_eleve = %s, Prenom_eleve = %s, Login_eleve = %s, Mot_de_passe = %s WHERE Id_eleve =" + current_user.id
+		cursor.execute(query, (lastname, firstname, login, pwd))
+		conn.commit()
+		return redirect(url_for('index'))
+
+	return render_template('profile.html', error = None)
 
 @app.route('/logout')
 def logout():
 	logout_user()
 	return redirect(url_for('index'))
+
+@app.route("/signup", methods=['GET', 'POST'])
+def signup():
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	query = "SELECT * FROM Eleve"
+	cursor.execute(query)
+	eleves = cursor.fetchall()
+
+	if request.method == "POST":
+		firstname = request.form['firstname']
+		lastname = request.form['lastname']
+		login = request.form['login']
+		pwd = request.form['pwd']
+		cpwd = request.form['cpwd']
+
+		#if login != current_user.login
+		for e in eleves:
+			if login == e[3]:
+				return render_template('profile.html', error = "Login deja pris !")
+
+		if pwd != cpwd:
+			return render_template('profile.html', error = "Mots de passe differents !")
+
+		query = "INSERT INTO Eleve (Nom_eleve, Prenom_eleve, Login_eleve, Mot_de_passe) VALUES(%s, %s, %s, %s)"
+		cursor.execute(query, (lastname, firstname, login, pwd))
+		conn.commit()
+		return redirect(url_for('login'))
+
+	return render_template('profile.html', error = None)
 
 if __name__ == "__main__":
 	app.run(debug=True)
