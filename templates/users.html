@@ -49,120 +49,118 @@
                             <a href="#">About</a>
                         </li>
                         <li>
-							<a href="/recherche/">Rechercher une recette</a>
-                        </li>
-                        <li>
-							<a href="/users/">Utilisateurs</a>
-                        </li>
-                    </ul>
-       
-                </div>
-                <!-- /.navbar-collapse -->
+                         <a href="/recherche/">Rechercher une recette</a>
+                     </li>
+                     {% if current_user.is_authenticated %}
+                     <li>
+                        <a href="/users/">Utilisateurs</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                
             </div>
-            <!-- /.container -->
-        </nav>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
-        <!-- Page Content -->
-        <div class="container">
+    <!-- Page Content -->
+    <div class="container">
 
-            <div class="row">
-                <div class="col-md-3 sidebar-outer">
-                    <div class="sidebar">
-                        <p class="lead">Type de recette</p>
-                        <div class="list-group">
-                            <a href="/" class="list-group-item">Toutes catégories</a>
-                            <a href="/index/Aperitif" class="list-group-item">Apéritifs</a>
-                            <a href="/index/Entree" class="list-group-item">Entrées</a>
-                            <a href="/index/Plat principal" class="list-group-item">Plats</a>
-                            <a href="/index/Dessert" class="list-group-item">Desserts</a>
-                            <a href="/index/Autre" class="list-group-item">Autres</a>
-                        </div>
-                    </div>
-
-                    <div class="profile-sidebar">
-                        <!-- SIDEBAR USERPIC -->
-                        <!-- END SIDEBAR USERPIC -->
-                        <!-- SIDEBAR USER TITLE -->
-                        <div class="profile-usertitle">
-                            <div class="profile-usertitle-name">
-                                {% if current_user.is_authenticated %}
-                                {{current_user.login}}
-                                {% else %}
-                                Invité
-                                {% endif %}
-                            </div>
-                        </div>
-                        <!-- END SIDEBAR USER TITLE -->
-                        <!-- SIDEBAR BUTTONS -->
-                        <!-- END SIDEBAR BUTTONS -->
-                        <!-- SIDEBAR MENU -->
-                        <div class="profile-usermenu">
-                            <ul class="nav">
-                                {% if current_user.is_authenticated %}
-                                <li class="active"> <a href="/profil/{{current_user.login}}"> <i class="glyphicon glyphicon-home"></i> Mes recettes </a> </li>
-                                <li> <a href="/profil/{{current_user.login}}/edit"> <i class="glyphicon glyphicon-user"></i> Paramètres du compte </a> </li>
-                                <li> <a href="/logout"> <i class="glyphicon glyphicon-log-out"></i> Se déconnecter </a> </li>
-                                {% else %}
-                                <li> <a href="/login"> <i class="glyphicon glyphicon-log-in"></i> Se connecter </a> </li>
-                                <li> <a href="/signup"> <i class="glyphicon glyphicon-user"></i> S'inscrire </a> </li>
-                                {% endif %}
-                            </ul>
-                        </div>
-                        <!-- END MENU -->
+        <div class="row">
+            <div class="col-md-3 sidebar-outer">
+                <div class="sidebar">
+                    <p class="lead">Type de recette</p>
+                    <div class="list-group">
+                        <a href="/" class="list-group-item">Toutes catégories</a>
+                        <a href="/index/Aperitif" class="list-group-item">Apéritifs</a>
+                        <a href="/index/Entree" class="list-group-item">Entrées</a>
+                        <a href="/index/Plat principal" class="list-group-item">Plats</a>
+                        <a href="/index/Dessert" class="list-group-item">Desserts</a>
+                        <a href="/index/Autre" class="list-group-item">Autres</a>
                     </div>
                 </div>
 
-
-                <div class="col-md-9">
-						<div class="row">
-							<div class="research">	
-								<form action="." method="POST">
-									<input type="text" name="search" placeholder="login"><br>					
-									<input type="submit" value="Rechercher">		
-								</form>
-							</div>
-						</div>
-	
-					   <div class="row">
-						   <h2>Listes des utilisateurs</h2>
-					   </div>
-                       {% for u in users %}
-                       <div class="row">
-							<div class="col-sm-4 col-lg-4 col-md-4">
-								<a href="/profil/{{u[1]}}">{{u[1]}}</a>
-							</div>	                      
+                <div class="profile-sidebar">
+                    <!-- SIDEBAR USERPIC -->
+                    <!-- END SIDEBAR USERPIC -->
+                    <!-- SIDEBAR USER TITLE -->
+                    <div class="profile-usertitle">
+                        <div class="profile-usertitle-name">
+                            {% if current_user.is_authenticated %}
+                            {{current_user.login}}
+                            {% else %}
+                            Invité
+                            {% endif %}
                         </div>
-                       {% endfor %}
-
+                    </div>
+                    <!-- END SIDEBAR USER TITLE -->
+                    <!-- SIDEBAR BUTTONS -->
+                    <!-- END SIDEBAR BUTTONS -->
+                    <!-- SIDEBAR MENU -->
+                    <div class="profile-usermenu">
+                        <ul class="nav">
+                            {% if current_user.is_authenticated %}
+                            <li class="active"> <a href="/profil/{{current_user.login}}"> <i class="glyphicon glyphicon-home"></i> Mes recettes </a> </li>
+                            <li> <a href="/profil/{{current_user.login}}/edit"> <i class="glyphicon glyphicon-user"></i> Paramètres du compte </a> </li>
+                            <li> <a href="/logout"> <i class="glyphicon glyphicon-log-out"></i> Se déconnecter </a> </li>
+                            {% else %}
+                            <li> <a href="/login"> <i class="glyphicon glyphicon-log-in"></i> Se connecter </a> </li>
+                            <li> <a href="/signup"> <i class="glyphicon glyphicon-user"></i> S'inscrire </a> </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <!-- END MENU -->
                 </div>
             </div>
 
+
+            <div class="col-md-9">
+              <div class="row">
+                 <div class="research">	
+                    <form action="." method="POST">
+                       <input type="text" name="search" placeholder="login"><br>					
+                       <input type="submit" value="Rechercher">		
+                   </form>
+               </div>
+           </div>
+           
+           <div class="row">
+               <h2>Listes des utilisateurs</h2>
+           </div>
+           {% for u in users %}
+           <div class="row">
+             <div class="col-sm-4 col-lg-4 col-md-4">
+                <a href="/profil/{{u[1]}}">{{u[1]}}</a>
+            </div>	                      
         </div>
-        <!-- /.container -->
+        {% endfor %}
 
-        <div class="container">
+    </div>
+</div>
 
-            <hr>
+</div>
+<!-- /.container -->
 
-            <!-- Footer -->
-            <footer>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>Copyright &copy; Your Website 2014</p>
-                    </div>
-                </div>
-            </footer>
+<div class="container">
 
-        </div>
-        <!-- /.container -->
+    <hr>
 
-        <!-- jQuery -->
-        <script src="{%if categorie != None%}../{%endif%}static/js/jquery.js"></script>
+    <!-- Footer -->
+    <footer>
+        
+    </footer>
 
-        <!-- Bootstrap Core JavaScript -->
-        <script src="{%if categorie != None%}../{%endif%}static/js/bootstrap.js"></script>
+</div>
+<!-- /.container -->
 
-    </body>
+<!-- jQuery -->
+<script src="{%if categorie != None%}../{%endif%}static/js/jquery.js"></script>
 
-    </html>
+<!-- Bootstrap Core JavaScript -->
+<script src="{%if categorie != None%}../{%endif%}static/js/bootstrap.js"></script>
+
+</body>
+
+</html>
 
