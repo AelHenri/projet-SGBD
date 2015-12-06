@@ -84,7 +84,7 @@
 
 @media (min-width: 768px) {
     .sidebar {
-        margin-top: 16%;
+        margin-top: 250px;
         position: fixed;
         min-width: 12%;
     }
@@ -93,10 +93,11 @@
 
 /* PROFIL */
 .profile-sidebar {
+	
     min-width : 12%;
     padding: 20px 0 10px 0;
     background: #fff;
-    position: absolute;
+    position: fixed;
     border-style: solid;
     border-width: 1.5px;
     border-radius: 3%;
