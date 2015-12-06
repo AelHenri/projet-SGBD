@@ -58,7 +58,7 @@ def load_user(id):
 def index(categorie=None):
 	cursor = mysql.connect().cursor()
 	if (categorie == None):
-		query = "SELECT Recette.Id_recette, Nom_recette, Nb_personnes, Budget, COUNT(Date_avis), (avg( Note_qualite ) + avg( Note_justesse ) + avg( Note_respect )) /3 AS Note, Url_image FROM Recette LEFT OUTER JOIN Avis ON Recette.Id_recette = Avis.Id_recette GROUP BY Id_recette, Nom_recette, Nb_personnes, Budget, Url_image"
+		query = "SELECT Recette.Id_recette, Nom_recette, Nb_personnes, Budget, Difficulte, COUNT(Date_avis), (avg( Note_qualite ) + avg( Note_justesse ) + avg( Note_respect )) /3 AS Note, Url_image FROM Recette LEFT OUTER JOIN Avis ON Recette.Id_recette = Avis.Id_recette GROUP BY Id_recette, Nom_recette, Nb_personnes, Budget, Url_image"
 	else:
 		query = "SELECT Recette.Id_recette, Nom_recette, Nb_personnes, Budget, COUNT(Date_avis), (avg( Note_qualite ) + avg( Note_justesse ) + avg( Note_respect )) /3 AS Note, Url_image FROM Recette LEFT OUTER JOIN Avis ON Recette.Id_recette = Avis.Id_recette WHERE Recette.Categorie_recette = '" + categorie + "' GROUP BY Id_recette, Nom_recette, Nb_personnes, Budget, Url_image"
 	cursor.execute(query)
@@ -127,14 +127,15 @@ def recherche():
 			keywords_request += " 0 ) "
 		order_request = " ORDER BY "+ request.form['tri'] + " " + request.form['order']
 		
-		query1 = "SELECT distinct Recette.Id_recette, Nom_recette, Nb_personnes, Budget, COUNT(Date_avis), (avg( Note_qualite ) + avg( Note_justesse ) + avg( Note_respect )) /3 AS Note, Url_image, Count(*) FROM Recette LEFT OUTER JOIN Avis ON Recette.Id_recette = Avis.Id_recette LEFT OUTER JOIN Commenter ON Recette.Id_recette = Commenter.Id_recette INNER JOIN Composer INNER JOIN Ingredient where Recette.Id_recette = Composer.Id_recette and Composer.Id_ingredient = Ingredient.Id_ingredient " + categorie_request + budget_request + difficulte_request + duree_request + keywords_request + " GROUP BY Id_recette, Nom_recette, Nb_personnes, Budget, Url_image" + order_request
+		query1 = "SELECT distinct Recette.Id_recette, Nom_recette, Nb_personnes, Budget, Difficulte, Count(Date_avis), (avg( Note_qualite ) + avg( Note_justesse ) + avg( Note_respect )) /3 AS Note, Url_image, Count(*) FROM Recette LEFT OUTER JOIN Avis ON Recette.Id_recette = Avis.Id_recette LEFT OUTER JOIN Commenter ON Recette.Id_recette = Commenter.Id_recette WHERE Recette.Id_recette in ( select Recette.Id_recette FROM Recette LEFT OUTER JOIN Avis ON Recette.Id_recette = Avis.Id_recette LEFT OUTER JOIN Commenter ON Recette.Id_recette = Commenter.Id_recette INNER JOIN Composer INNER JOIN Ingredient WHERE Recette.Id_recette = Composer.Id_recette AND Composer.Id_ingredient = Ingredient.Id_ingredient " + categorie_request + budget_request + difficulte_request + duree_request + keywords_request + " GROUP BY Id_recette) GROUP BY Recette.Id_recette, Nom_recette, Nb_personnes, Budget, Difficulte, Url_image "+ order_request
 		cursor.execute(query1)
 		recettes = cursor.fetchall()	
 		
 		query2 = "SELECT count(distinct Nom_recette) FROM Recette LEFT OUTER JOIN Avis ON Recette.Id_recette = Avis.Id_recette LEFT OUTER JOIN Commenter ON Recette.Id_recette = Commenter.Id_recette INNER JOIN Composer INNER JOIN Ingredient where Recette.Id_recette = Composer.Id_recette and Composer.Id_ingredient = Ingredient.Id_ingredient " + categorie_request + budget_request + difficulte_request + duree_request + keywords_request
 		cursor.execute(query2)
-		nbRecettes = cursor.fetchone()		
-		
+		nbRecettes = cursor.fetchone()	
+
+			
 		return render_template('recherche.html',recettes=recettes,nbRecettes=nbRecettes)
 	else:
 		return render_template('recherche.html',nbRecettes=None)

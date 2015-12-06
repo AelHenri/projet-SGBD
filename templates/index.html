@@ -154,8 +154,8 @@
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail">
                                 <div class="image">
-                                    {% if r[6] != None %}
-                                    <img src="{%if categorie != None%}../{%endif%}static/images/recettes/{{r[6]}}" alt="">
+                                    {% if r[7] != None %}
+                                    <img src="{%if categorie != None%}../{%endif%}static/images/recettes/{{r[7]}}" alt="">
                                     {% else %}
                                     <img src="http://placehold.it/320x150" alt="">
                                     {% endif %}
@@ -166,11 +166,11 @@
                                     <p>Nombre de personnes : {{r[2]}}<br />Budget : {{r[3]}}€<br />Difficulté : {{r[4]}}</p>
                                 </div>
                                 <div class="ratings">
-                                    <p class="pull-right">{{r[4]}} reviews</p>
+                                    <p class="pull-right">{{r[5]}} reviews</p>
                                     <p>
                                         {% for i in range(1,6) %}
-                                        {% if r[5]!= None %}
-                                        {% if (i <= r[5]) %}
+                                        {% if r[6]!= None %}
+                                        {% if (i <= r[6]) %}
                                         <span class="glyphicon glyphicon-star"></span>
                                         {% else %}
                                         <span class="glyphicon glyphicon-star-empty"></span>
