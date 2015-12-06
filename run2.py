@@ -69,12 +69,18 @@ def recherche():
 				keywords_request += "((lower(Nom_recette) LIKE '%" +word+"%') OR ((lower(Nom_ingredient) LIKE '%" +word+"%') AND Composer.Categorie_recette = 'principal')) OR "
 			keywords_request += " 0 ) "
 		order_request = " ORDER BY "+ request.form['tri'] + " " + request.form['order']
-		query = "SELECT distinct Recette.Id_recette, Nom_recette, Nb_personnes, Budget, COUNT(Date_avis), (avg( Note_qualite ) + avg( Note_justesse ) + avg( Note_respect )) /3 AS Note, Url_image FROM Recette LEFT OUTER JOIN Avis ON Recette.Id_recette = Avis.Id_recette LEFT OUTER JOIN Commenter ON Recette.Id_recette = Commenter.Id_recette INNER JOIN Composer INNER JOIN Ingredient where Recette.Id_recette = Composer.Id_recette and Composer.Id_ingredient = Ingredient.Id_ingredient " + categorie_request + budget_request + difficulte_request + duree_request + keywords_request + " GROUP BY Id_recette, Nom_recette, Nb_personnes, Budget, Url_image" + order_request
-		cursor.execute(query)
+		
+		query1 = "SELECT distinct Recette.Id_recette, Nom_recette, Nb_personnes, Budget, COUNT(Date_avis), (avg( Note_qualite ) + avg( Note_justesse ) + avg( Note_respect )) /3 AS Note, Url_image, Count(*) FROM Recette LEFT OUTER JOIN Avis ON Recette.Id_recette = Avis.Id_recette LEFT OUTER JOIN Commenter ON Recette.Id_recette = Commenter.Id_recette INNER JOIN Composer INNER JOIN Ingredient where Recette.Id_recette = Composer.Id_recette and Composer.Id_ingredient = Ingredient.Id_ingredient " + categorie_request + budget_request + difficulte_request + duree_request + keywords_request + " GROUP BY Id_recette, Nom_recette, Nb_personnes, Budget, Url_image" + order_request
+		cursor.execute(query1)
 		recettes = cursor.fetchall()	
-		return render_template('recherche.html',recettes=recettes)
+		
+		query2 = "SELECT count(distinct Nom_recette) FROM Recette LEFT OUTER JOIN Avis ON Recette.Id_recette = Avis.Id_recette LEFT OUTER JOIN Commenter ON Recette.Id_recette = Commenter.Id_recette INNER JOIN Composer INNER JOIN Ingredient where Recette.Id_recette = Composer.Id_recette and Composer.Id_ingredient = Ingredient.Id_ingredient " + categorie_request + budget_request + difficulte_request + duree_request + keywords_request
+		cursor.execute(query2)
+		nbRecettes = cursor.fetchone()		
+		
+		return render_template('recherche.html',recettes=recettes,nbRecettes=nbRecettes)
 	else:
-		return render_template('recherche.html')
+		return render_template('recherche.html',nbRecettes=None)
 
 	
 app.run(debug=True)
