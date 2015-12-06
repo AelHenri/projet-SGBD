@@ -95,6 +95,13 @@
                             <h4 class="pull-right">Budget : {{recette[2]}}€</h4>
                             <h4><a href="#">{{recette[1]}}</a>
                             </h4>
+                            <p>Ingrédients :
+                                <ul>
+                                {% for i in ingredients %}
+                                    <li>{{i[2] | int}}{% if i[1]!="unites" %}{{i[1]}} de{% endif %} {{i[0]}}</li>
+                                {% endfor %}
+                                </ul>
+                            </p>
                             <p>{{recette[7]}}</p>
                         </div>
                         <div class="ratings">

@@ -69,7 +69,6 @@
         <div class="container">
 
             <div class="row">
-
                 <div class="col-md-3 sidebar-outer">
                     <div class="sidebar">
                         <p class="lead">Type de recette</p>
@@ -82,7 +81,40 @@
                             <a href="/index/Autre" class="list-group-item">Autres</a>
                         </div>
                     </div>
+
+                    <div class="profile-sidebar">
+                        <!-- SIDEBAR USERPIC -->
+                        <!-- END SIDEBAR USERPIC -->
+                        <!-- SIDEBAR USER TITLE -->
+                        <div class="profile-usertitle">
+                            <div class="profile-usertitle-name">
+                                {% if current_user.is_authenticated %}
+                                {{current_user.login}}
+                                {% else %}
+                                Invité
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!-- END SIDEBAR USER TITLE -->
+                        <!-- SIDEBAR BUTTONS -->
+                        <!-- END SIDEBAR BUTTONS -->
+                        <!-- SIDEBAR MENU -->
+                        <div class="profile-usermenu">
+                            <ul class="nav">
+                                {% if current_user.is_authenticated %}
+                                <li class="active"> <a href="/profil/{{current_user.login}}"> <i class="glyphicon glyphicon-home"></i> Mes recettes </a> </li>
+                                <li> <a href="/profil/{{current_user.login}}/edit"> <i class="glyphicon glyphicon-user"></i> Paramètres du compte </a> </li>
+                                <li> <a href="/logout"> <i class="glyphicon glyphicon-log-out"></i> Se déconnecter </a> </li>
+                                {% else %}
+                                <li> <a href="/login"> <i class="glyphicon glyphicon-log-in"></i> Se connecter </a> </li>
+                                <li> <a href="/signup"> <i class="glyphicon glyphicon-user"></i> S'inscrire </a> </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <!-- END MENU -->
+                    </div>
                 </div>
+
 
                 <div class="col-md-9">
 
@@ -130,63 +162,61 @@
                                     {% endif %}
                                 </div>
                                 <div class="caption">
-                                    <!--<h4 class="pull-right">Budget : {{r[2]}}€</h4>-->
-                                    <h4><a href="/recette/{{r[0]}}">{{r[1]}}</a>
-                                    </h4>
-                                    <p>Nombre de personnes : {{r[2]}}<br />
-                                        Budget : {{r[3]}}€</p>
-                                    </div>
-                                    <div class="ratings">
-                                        <p class="pull-right">{{r[4]}} reviews</p>
-                                        <p>
-                                            {% for i in range(1,6) %}
-                                            {% if r[5]!= None %}
-                                            {% if (i <= r[5]) %}
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            {% else %}
-                                            <span class="glyphicon glyphicon-star-empty"></span>
-                                            {% endif %}
-                                            {% else %}
-                                            <span class="glyphicon glyphicon-star-empty"></span>
-                                            {% endif %}
-                                            {% endfor %}
-                                        </p>
-                                    </div>
+
+                                    <h4><a href="/recette/{{r[0]}}">{{r[1]}}</a></h4>
+                                    <p>Nombre de personnes : {{r[2]}}<br />Budget : {{r[3]}}€<br />Difficulté : {{r[4]}}</p>
+                                </div>
+                                <div class="ratings">
+                                    <p class="pull-right">{{r[4]}} reviews</p>
+                                    <p>
+                                        {% for i in range(1,6) %}
+                                        {% if r[5]!= None %}
+                                        {% if (i <= r[5]) %}
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        {% else %}
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        {% endif %}
+                                        {% else %}
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </p>
                                 </div>
                             </div>
-                            {% endfor %}
-
                         </div>
+                        {% endfor %}
 
                     </div>
 
                 </div>
 
             </div>
-            <!-- /.container -->
 
-            <div class="container">
+        </div>
+        <!-- /.container -->
 
-                <hr>
+        <div class="container">
 
-                <!-- Footer -->
-                <footer>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <p>Copyright &copy; Your Website 2014</p>
-                        </div>
+            <hr>
+
+            <!-- Footer -->
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Copyright &copy; Your Website 2014</p>
                     </div>
-                </footer>
+                </div>
+            </footer>
 
-            </div>
-            <!-- /.container -->
+        </div>
+        <!-- /.container -->
 
-            <!-- jQuery -->
-            <script src="{%if categorie != None%}../{%endif%}static/js/jquery.js"></script>
+        <!-- jQuery -->
+        <script src="{%if categorie != None%}../{%endif%}static/js/jquery.js"></script>
 
-            <!-- Bootstrap Core JavaScript -->
-            <script src="{%if categorie != None%}../{%endif%}static/js/bootstrap.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="{%if categorie != None%}../{%endif%}static/js/bootstrap.js"></script>
 
-        </body>
+    </body>
 
-        </html>
+    </html>

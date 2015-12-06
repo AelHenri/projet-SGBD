@@ -1,7 +1,8 @@
 #!/usr/bin/python
-from flask import Flask,render_template
+from flask import Flask,render_template, request, flash, Session, url_for, redirect
 from flaskext.mysql import MySQL
 from flask import jsonify
+from flask.ext.login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 
 mysql = MySQL()
 app = Flask(__name__)
@@ -10,6 +11,46 @@ app.config['MYSQL_DATABASE_PASSWORD'] = 'admin'
 app.config['MYSQL_DATABASE_DB'] = 'ProjetSGBD'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
+
+app.config['SECRET_KEY'] = 'POOp'
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+class User(UserMixin):
+	"""docstring for User"""
+	def __init__(self, login, id, active=True):
+		self.login = login
+		self.id = id
+		self.active = active
+
+		cursor = mysql.connect().cursor()
+		query = "SELECT * FROM Eleve WHERE Id_eleve = " + str(id)
+		cursor.execute(query)
+		eleve = cursor.fetchone()
+		self.lastname = eleve[1]
+		self.firstname = eleve[2]
+		self.date = eleve[4]
+		self.pwd = eleve[5]
+
+	def is_active(self):
+		return self.active
+
+	def is_anonymous(self):
+		return False
+
+	def is_authenticated(self):
+		return True
+
+@login_manager.user_loader
+def load_user(id):
+	cursor = mysql.connect().cursor()
+	query = "SELECT * FROM Eleve WHERE Id_eleve = " + id
+	cursor.execute(query)
+	eleve = cursor.fetchone()
+	userLogin = eleve[3]
+	return User(userLogin, id)
+		
 
 @app.route("/")
 @app.route("/index")
@@ -32,7 +73,11 @@ def recettes(Id_recette):
 	cursor.execute(query)
 	recette = cursor.fetchone()
 
-	query = "SELECT Commentaire, Date_commentaire, Login_eleve FROM Recette NATURAL JOIN Commenter NATURAL JOIN Eleve WHERE Id_recette = '" + Id_recette + "'" 
+	query = "SELECT Nom_ingredient, Unite_mesure, Quantite FROM Ingredient,Composer,Recette WHERE Ingredient.Id_ingredient = Composer.Id_ingredient AND Composer.Id_recette = Recette.Id_recette AND Recette.Id_recette = '" + Id_recette + "'"
+	cursor.execute(query)
+	ingredients = cursor.fetchall()
+
+	query = "SELECT Commentaire, Date_commentaire, Login_eleve FROM Commenter NATURAL JOIN Eleve WHERE Id_recette = '" + Id_recette + "'" 
 	cursor.execute(query)
 	commentaires = cursor.fetchall()
 
@@ -48,6 +93,52 @@ def recettes(Id_recette):
 	cursor.execute(query)
 	NbAvis = cursor.fetchone()
 
-	return render_template('recette.html', recette=recette, commentaires=commentaires, avis=avis, notes=notes, nbavis=NbAvis)
+	return render_template('recette.html', recette=recette, ingredients=ingredients, commentaires=commentaires, avis=avis, notes=notes, nbavis=NbAvis)
 
-app.run(debug=True)
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+	isValidLogin = False
+	isValidPassword = False
+
+	cursor = mysql.connect().cursor()
+	query = "SELECT * FROM Eleve"
+	cursor.execute(query)
+	eleves = cursor.fetchall()
+
+	if request.method == "POST" and "username" in request.form:
+		login = request.form['username']
+		pwd = request.form['password']
+
+		for e in eleves:
+			if e[3] == login:
+				isValidLogin = True
+				if e[5] == pwd:
+					isValidPassword = True
+					userId = e[0]
+
+		if isValidLogin and isValidPassword:
+			validUser = User(login, userId)
+			if login_user(validUser):
+				return redirect(url_for("index"))
+			else:
+				return render_template("login.html", error="inconnue")
+		elif isValidLogin and not(isValidPassword):
+			return render_template("login.html", error="password")
+		else:
+			return render_template("login.html", error="username")
+	return render_template("login.html")
+
+@app.route("/profil/<login>/edit")
+@login_required
+def edit_profil(login):
+
+	return render_template('profile.html')
+
+@app.route('/logout')
+def logout():
+	logout_user()
+	return redirect(url_for('index'))
+
+if __name__ == "__main__":
+	app.run(debug=True)

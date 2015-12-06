@@ -32,8 +32,6 @@ body {
 }
 
 .thumbnail img {
-	/*overflow: hidden;
-	max-height: 300px;*/
     width: 100%;
 }
 
