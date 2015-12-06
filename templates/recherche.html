@@ -153,10 +153,11 @@
 										<select class="inputFull" name="tri">
 											<option value="Budget">Budget</option>
 											<option value="Difficulte">Difficulté</option>
-											<option value="Duree">Durée</option>
-											<option value="Note">Note</option>
+											<option value="( Temps_preparation + Temps_cuisson )">Durée</option>
+											<option value="(avg( Note_qualite ) + avg( Note_justesse ) + avg( Note_respect )) /3)">Note</option>
 											<option value="COUNT(Date_avis)">Nombre d'avis</option>
 											<option value="COUNT(Date_commentaire)">Nombre de commentaires</option>
+											<option value="ifnull(avg(Avis.Note_qualite),2)/Recette.budget">Rapport qualité/prix</option>
 										</select>
 									</div>
 									<div class="col-sm-4 col-lg-4 col-md-4">
@@ -167,19 +168,23 @@
 										</select>									
 									</div>
 																		
-									<div class="col-sm-3 col-lg-3 col-md-3">
-										<input class="inputFull" type="submit" value="Rechercher">		
-										<input class="inputFull" type="reset" value="Reset">
+									<div class="col-sm-4 col-lg-4 col-md-4">
+										<input class="inputHalf" type="submit" value="Rechercher">		
+										<input class="inputHalf" type="reset" value="Reset">
 									</div>
 								</div>
 							</div>													
 						</form>
 				    </div>
-					
+					<div class="row">
+						{% if nbRecettes != None %}
+							{{nbRecettes[0]}} recettes sélectionnées
+						{% endif %}
+					</div>	
 					
 					<div class="row">
 						<div class="resultres">
-								{% for r in recettes %}
+								{% for r in recettes %}							
 								<div class="col-sm-4 col-lg-4 col-md-4">
 									<div class="thumbnail">
 										<div class="image">
