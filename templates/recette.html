@@ -118,7 +118,7 @@
 
                 <div class="col-md-9">
 
-					
+
                     <div class="thumbnail">
                         {% if recette[12] == None %}
                         <img class="img-responsive" src="http://placehold.it/800x300" alt="">
@@ -130,96 +130,32 @@
                             <h4><a href="#">{{recette[1]}}</a>
                             </h4>
                             <p><strong>Difficulté :</strong> {{recette[3]}}/5<br />
-                            <strong>Temps de préparation :</strong> {{recette[4]}} mn<br />
-                            <strong>Temps de cuisson :</strong> {{recette[5]}} mn<br />
-                            <strong>Ingrédients :</strong>
+                                <strong>Temps de préparation :</strong> {{recette[4]}} mn<br />
+                                <strong>Temps de cuisson :</strong> {{recette[5]}} mn<br />
+                                <strong>Ingrédients :</strong>
                                 <ul>
-                                {% for i in ingredients %}
+                                    {% for i in ingredients %}
                                     <li>{{i[2] | int}}{% if i[1]!="unites" %}{{i[1]}} de{% endif %} {{i[0]}}</li>
-                                {% endfor %}
+                                    {% endfor %}
                                 </ul>
                             </p>
                             <p>{{recette[7]}}</p>
                             <p><strong>Auteur :</strong><em> {% if current_user.is_authenticated %}<a href="/profil/{{auteur[0]}}">{%endif%}{{auteur[0]}}{% if current_user.is_authenticated %}</a>{%endif%}</em></p>
-                        </div>
-                        <div class="ratings">
-                            {% if notes[0] != None%}
-                            <p class="pull-right">{{ nbavis[0] }} reviews</p>
-                            <p> Note de qualité :
-                                {% for i in range(1,6) %}
-                                {% if notes[0]!= None %}
-                                {% if (i <= notes[0]) %}
-                                <span class="glyphicon glyphicon-star"></span>
+                            <p>{% if current_user.is_authenticated %}
+                                {% if current_user.login == auteur[0] %}
+                                <a href="/{{recette[0]}}/edit">Editer votre recette</a><br>
                                 {% else %}
-                                <span class="glyphicon glyphicon-star-empty"></span>
                                 {% endif %}
                                 {% else %}
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                {% endif %}
-                                {% endfor %}
-                                {{notes[0]|round(2, 'floor')}} stars
-                            </p>
-                            <p> Note de justesse :
-                                {% for i in range(1,6) %}
-                                {% if notes[1]!= None %}
-                                {% if (i <= notes[1]) %}
-                                <span class="glyphicon glyphicon-star"></span>
-                                {% else %}
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                {% endif %}
-                                {% else %}
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                {% endif %}
-                                {% endfor %}
-                                {{notes[1]|round(2, 'floor')}} stars
-                            </p>
-                            <p> Note de respect :
-                                {% for i in range(1,6) %}
-                                {% if notes[2]!= None %}
-                                {% if (i <= notes[2]) %}
-                                <span class="glyphicon glyphicon-star"></span>
-                                {% else %}
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                {% endif %}
-                                {% else %}
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                {% endif %}
-                                {% endfor %}
-                                {{notes[2]|round(2, 'floor')}} stars
-                            </p>
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    <!-- Avis -->
-                    <div class = "col-lg-7 col-md-7 col-sm-7">
-                        <div class="well">
-
-                            <div class="text-right">
-                                <a  href="/avis/{{recette[0]}}" class="btn btn-success">Laisser un avis</a>
+                                {% endif %}</p>
                             </div>
-                            
-                            {% for a in avis %}
-                            <hr>
-
-                            <div class="row">
-                                <div class="col-md-12">
-									
-									
-									{% if current_user.is_authenticated %}
-										{% if current_user.login == a[5] %}
-											<a href="/avis/{{recette[0]}}/{{a[5]}}">Editer votre avis</a><br>
-										{% else %}
-										{% endif %}
-									{% else %}
-									{% endif %}
-									
-									
-									
-									
+                            <div class="ratings">
+                                {% if notes[0] != None%}
+                                <p class="pull-right">{{ nbavis[0] }} reviews</p>
+                                <p> Note de qualité :
                                     {% for i in range(1,6) %}
-                                    {% if a[6]!= None %}
-                                    {% if (i <= a[6]) %}
+                                    {% if notes[0]!= None %}
+                                    {% if (i <= notes[0]) %}
                                     <span class="glyphicon glyphicon-star"></span>
                                     {% else %}
                                     <span class="glyphicon glyphicon-star-empty"></span>
@@ -228,10 +164,81 @@
                                     <span class="glyphicon glyphicon-star-empty"></span>
                                     {% endif %}
                                     {% endfor %}
-                                    {{a[5]}}
-                                    <span class="pull-right">{{a[3]}}</span>
-                                    <p>{{a[4]}}</p>
-                                    <p> Note de qualité :
+                                    {{notes[0]|round(2, 'floor')}} stars
+                                </p>
+                                <p> Note de justesse :
+                                    {% for i in range(1,6) %}
+                                    {% if notes[1]!= None %}
+                                    {% if (i <= notes[1]) %}
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    {% else %}
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    {% endif %}
+                                    {% else %}
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {{notes[1]|round(2, 'floor')}} stars
+                                </p>
+                                <p> Note de respect :
+                                    {% for i in range(1,6) %}
+                                    {% if notes[2]!= None %}
+                                    {% if (i <= notes[2]) %}
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    {% else %}
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    {% endif %}
+                                    {% else %}
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {{notes[2]|round(2, 'floor')}} stars
+                                </p>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Avis -->
+                        <div class = "col-lg-7 col-md-7 col-sm-7">
+                            <div class="well">
+
+                                <div class="text-right">
+                                    <a  href="/avis/{{recette[0]}}" class="btn btn-success">Laisser un avis</a>
+                                </div>
+
+                                {% for a in avis %}
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+
+
+                                       {% if current_user.is_authenticated %}
+                                       {% if current_user.login == a[5] %}
+                                       <a href="/avis/{{recette[0]}}/{{a[5]}}">Editer votre avis</a><br>
+                                       {% else %}
+                                       {% endif %}
+                                       {% else %}
+                                       {% endif %}
+
+
+
+
+                                       {% for i in range(1,6) %}
+                                       {% if a[6]!= None %}
+                                       {% if (i <= a[6]) %}
+                                       <span class="glyphicon glyphicon-star"></span>
+                                       {% else %}
+                                       <span class="glyphicon glyphicon-star-empty"></span>
+                                       {% endif %}
+                                       {% else %}
+                                       <span class="glyphicon glyphicon-star-empty"></span>
+                                       {% endif %}
+                                       {% endfor %}
+                                       {{a[5]}}
+                                       <span class="pull-right">{{a[3]}}</span>
+                                       <p>{{a[4]}}</p>
+                                       <p> Note de qualité :
                                         {% for i in range(1,6) %}
                                         {% if a[0]!= None %}
                                         {% if (i <= a[0]) %}
@@ -273,7 +280,7 @@
                                         {% endfor %}
                                         {{a[2]|round(2, 'floor')}} stars
                                     </p>
-                                  
+
                                     
                                 </div>
                             </div>
@@ -351,7 +358,7 @@
 
             <!-- Footer -->
             <footer>
-               
+
             </footer>
 
         </div>
