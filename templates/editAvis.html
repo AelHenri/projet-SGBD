@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Ajout Avis</title>
+
+	<!-- Bootstrap Core CSS -->
+	<link href="../../static/css/bootstrap.css" rel="stylesheet">
+
+	<!-- Custom CSS -->
+	<link href="../../static/css/shop-research.css" rel="stylesheet">
+	<link href="../../static/css/shop-homepage.css" rel="stylesheet">
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+    	<!-- Navigation -->
+    	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    		<div class="container">
+    			<!-- Brand and toggle get grouped for better mobile display -->
+    			<div class="navbar-header">
+    				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    					<span class="sr-only">Toggle navigation</span>
+    					<span class="icon-bar"></span>
+    					<span class="icon-bar"></span>
+    					<span class="icon-bar"></span>
+    				</button>
+    				<a class="navbar-brand" href="/">Accueil</a>
+    			</div>
+    			<!-- Collect the nav links, forms, and other content for toggling -->
+    			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    				<ul class="nav navbar-nav">
+    					<li>
+    						<a href="#">About</a>
+    					</li>
+    					<li>
+    						<a href="/recherche/">Recherche une recette</a>
+    					</li>
+    					{% if current_user.is_authenticated %}
+    					<li>
+    						<a href="/users/">Utilisateurs</a>
+    					</li>
+    					{% endif %}
+    				</ul>
+
+    			</div>
+    			<!-- /.navbar-collapse -->
+    		</div>
+    		<!-- /.container -->
+    	</nav>
+
+    	<!-- Page Content -->
+    	<div class="container">
+
+    		<div class="row">
+
+    			<div class="col-md-3 sidebar-outer">
+    				<div class="sidebar">
+    					<p class="lead">Type de recette</p>
+    					<div class="list-group">
+    						<a href="/" class="list-group-item">Toutes catégories</a>
+    						<a href="/index/Aperitif" class="list-group-item">Apéritifs</a>
+    						<a href="/index/Entree" class="list-group-item">Entrées</a>
+    						<a href="/index/Plat principal" class="list-group-item">Plats</a>
+    						<a href="/index/Dessert" class="list-group-item">Desserts</a>
+    						<a href="/index/Autre" class="list-group-item">Autres</a>
+    					</div>
+    				</div>
+
+    				<div class="profile-sidebar">
+    					<!-- SIDEBAR USERPIC -->
+    					<!-- END SIDEBAR USERPIC -->
+    					<!-- SIDEBAR USER TITLE -->
+    					<div class="profile-usertitle">
+    						<div class="profile-usertitle-name">
+    							{% if current_user.is_authenticated %}
+    							{{current_user.login}}
+    							{% else %}
+    							Invité
+    							{% endif %}
+    						</div>
+    					</div>
+    					<!-- END SIDEBAR USER TITLE -->
+    					<!-- SIDEBAR BUTTONS -->
+    					<!-- END SIDEBAR BUTTONS -->
+    					<!-- SIDEBAR MENU -->
+    					<div class="profile-usermenu">
+    						<ul class="nav">
+    							{% if current_user.is_authenticated %}
+    							<li class="active"> <a href="/profil/{{current_user.login}}"> <i class="glyphicon glyphicon-home"></i> Mes recettes </a> </li>
+    							<li> <a href="/profil/{{current_user.login}}/edit"> <i class="glyphicon glyphicon-user"></i> Paramètres du compte </a> </li>
+    							<li> <a href="/logout"> <i class="glyphicon glyphicon-log-out"></i> Se déconnecter </a> </li>
+    							{% else %}
+    							<li> <a href="/login"> <i class="glyphicon glyphicon-log-in"></i> Se connecter </a> </li>
+    							<li> <a href="/signup"> <i class="glyphicon glyphicon-user"></i> S'inscrire </a> </li>
+    							{% endif %}
+    						</ul>
+    					</div>
+    					<!-- END MENU -->
+    				</div>                    
+
+    			</div>
+
+    			<div class="col-md-9">
+						
+					<h3>Modifier votre avis</h3>
+					
+						
+					<form class="form-horizontal" role="form" method="post">
+						<div class="row">
+							<div class="form-group">
+							<textarea name="avis" maxlength="1000" class="form-control" rows="3">{{avis[6]}}</textarea>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="form-group">
+								<label class="col-md-3 control-label">Notes:</label>
+								<div class="col-md-4">
+									<input class="form-control" min="0" max ="5" value="{{avis[2]}}" type="number" name="qualite" placeholder="Qualité de la recette">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group">
+								<label class="col-md-3 control-label"></label>
+								<div class="col-md-4">
+									<input class="form-control" min="0" max ="5" value="{{avis[3]}}" type="number" name="justesse" placeholder="Justesse du budget">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group">
+								<label class="col-md-3 control-label"></label>
+								<div class="col-md-4">
+									<input class="form-control" min="0" max ="5" value="{{avis[4]}}" t type="number" name="respect" placeholder="Respect de la difficulté">
+								</div>
+							</div>
+						</div>
+						
+											
+						<div class="row">
+							<div class="form-group">
+								<label class="col-md-8 control-label"></label>
+								<div class="col-md-3">
+								  <input type="submit" class="btn btn-primary" value="Envoyer">
+								  <span></span>
+								  <input onclick="location.href = '/recette/{{Id_recette}}';" type="reset" class="btn btn-default" value="Cancel">
+								</div>
+							</div>
+						</div>
+
+					  </div>
+					</form>
+
+
+
+    			</div>
+    			
+    			
+    		</div>
+
+    	</div>
+    		<!-- /.container -->
+
+    	<div class="container">
+
+    			<hr>
+
+    			<!-- Footer -->
+    			<footer>
+    			
+    			</footer>
+
+    	</div>
+    		<!-- /.container -->
+
+    		<!-- jQuery -->
+    		<script src="static/js/jquery.js"></script>
+
+    		<!-- Bootstrap Core JavaScript -->
+    		<script src="static/js/bootstrap.js"></script>
+
+    </body>
+</html>
+
