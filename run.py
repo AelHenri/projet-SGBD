@@ -1,8 +1,8 @@
 #!/usr/bin/python
 from flask import Flask,render_template, request, flash, Session, url_for, redirect
 from flaskext.mysql import MySQL
-from flask import jsonify
 from flask.ext.login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
+import os
 
 mysql = MySQL()
 app = Flask(__name__)
@@ -12,7 +12,8 @@ app.config['MYSQL_DATABASE_DB'] = 'ProjetSGBD'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 
-app.config['SECRET_KEY'] = 'POOp'
+app.config['SECRET_KEY'] = 'secret'
+app.config['IMAGE_FOLDER'] = 'static/images/recettes'
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -257,6 +258,7 @@ def edit_profil(login):
 	return render_template('profile.html', error = None)
 
 @app.route('/logout')
+@login_required
 def logout():
 	logout_user()
 	return redirect(url_for('index'))
@@ -290,6 +292,70 @@ def signup():
 		return redirect(url_for('login'))
 
 	return render_template('profile.html', error = None)
+
+@app.route("/nouvelleRecette", methods=['GET', 'POST'])
+@login_required
+def nouvelleRecette():
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	query = "SELECT * FROM Ingredient"
+	cursor.execute(query)
+	ingredients = cursor.fetchall()
+
+	if request.method == "POST":
+		name = request.form['name']
+		budget = request.form['budget']
+		difficulty = request.form['difficulty']
+		prepTime = request.form['preparationTime']
+		cookTime = request.form['cookingTime']
+		number = request.form['people']
+		recipeIngredients = request.form.getlist('ingredients[]')
+		quantites = request.form.getlist('quantites[]')
+		unites = request.form.getlist('unites[]')
+		principal = request.form.getlist('principal[]')
+		instructions = request.form['instructions']
+		categorie = request.form['categorie']
+		image = request.files['image']
+
+		query = "INSERT INTO Recette (Nom_recette, Budget, Difficulte, Temps_preparation, Temps_cuisson, Nb_personnes, Etapes, Categorie_recette, Id_eleve) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+		cursor.execute(query, (name, budget, difficulty, prepTime, cookTime, number, instructions, categorie, current_user.id))
+		conn.commit()
+
+		query = "SELECT Id_recette FROM Recette ORDER BY Id_recette DESC LIMIT 1"
+		cursor.execute(query)
+		Id_recette = cursor.fetchone()[0]
+
+		if image:
+			imageext = os.path.splitext(image.filename)[1]
+			imagename = str(Id_recette) + imageext
+			image.save(os.path.join(app.config['IMAGE_FOLDER'], imagename))
+			query = "UPDATE Recette SET Url_image = %s WHERE Id_recette = %s"
+			cursor.execute(query, (imagename, Id_recette))
+			conn.commit()
+
+		ExistingIngredient = False
+		ni = len(recipeIngredients)
+		for i in range(0,ni):
+			for ingr in ingredients:
+				if recipeIngredients[i] == ingr[1] and unites[i] == ingr[2]:
+					ExistingIngredient = True
+					Id_ingredient = ingr[0]
+			if not(ExistingIngredient):
+				query = "INSERT INTO Ingredient (Nom_ingredient, Unite_mesure) VALUES (LOWER(%s), %s)"
+				cursor.execute(query, (recipeIngredients[i], unites[i]))
+				conn.commit()
+
+				query = "SELECT Id_ingredient FROM Ingredient ORDER BY Id_ingredient DESC LIMIT 1"
+				cursor.execute(query)
+				Id_ingredient = cursor.fetchone()[0]
+
+			query = "INSERT INTO Composer (Id_recette, Id_ingredient, Quantite, Categorie_ingredient) VALUES (%s, %s, %s, %s)"
+			cursor.execute(query, (Id_recette, Id_ingredient, quantites[i], principal[i]))
+			conn.commit()
+		return redirect(url_for('recettes', Id_recette = Id_recette))	
+
+
+	return render_template('nouvelleRecette.html')
 
 if __name__ == "__main__":
 	app.run(debug=True)

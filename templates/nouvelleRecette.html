@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Recettes</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="static/css/bootstrap.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="static/css/shop-homepage.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Accueil</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="#">About</a>
+          </li>
+          <li>
+            <a href="/recherche/">Recherche une recette</a>
+          </li>
+          {% if current_user.is_authenticated %}
+          <li>
+            <a href="/users/">Utilisateurs</a>
+          </li>
+          {% endif %}
+        </ul>
+
+      </div>
+
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+
+  <div class="container">
+    <h1>Nouvelle recette</h1>
+    <hr>
+    <div class="row">
+
+      <!-- edit form column -->
+      <div class="col-md-12 personal-info">
+        {% if error != None %}
+        <div class="alert alert-info alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a> 
+          <i class="fa fa-coffee"></i>
+          <strong>{{error}}</strong>
+        </div>
+        {% endif %}
+
+        
+        <h3>Informations de la recette</h3>
+        
+
+        <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Nom:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="name" placeholder="Tarte tatin" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Budget:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="number" name="budget" placeholder="€" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Difficulté:</label>
+            <div class="col-md-8">
+              <select class="form-control" name="difficulty" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Temps de préparation:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="number" name="preparationTime" placeholder="mn" min="1" step="1" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Temps de cuisson:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="number" name="cookingTime" placeholder="mn" min="1" step="1" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Nombre de personnes:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="number" name="people" min="1" step="1" required>
+            </div>
+          </div>
+
+
+          <div class="form-group" id="dynamicInput">
+            <label class="col-md-3 control-label">Ingrédient:</label>
+            <div class="col-md-3" >
+              <input class="form-control" type="text" name="ingredients[]" placeholder="Nom de l'ingrédient" required>
+            </div>
+            <div class="col-md-2">
+              <input class="form-control" type="number" name="quantites[]" placeholder="Quantité">
+            </div>
+            <div class="col-md-1">
+              <select class="form-control" name="unites[]">
+                <option value="unites">Unité</option>
+                <option value="cl">cL</option>
+                <option value="l">L</option>
+                <option value="g">g</option>
+                <option value="kg">kg</option>
+                <option value="cafe">Cuillère(s) à café</option>
+                <option value="soupe">Cuillère(s) à soupe</option>
+                <option value="pincee">Pincée(s)</option>
+                <option value="tranche">Tranche(s)</option>
+                <option value="goutte">Goutte(s)</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <select class="form-control" name="principal[]" value="principal" required>
+                <option value="Principal">Principal</option>
+                <option value="Secondaire">Secondaire</option>
+                <option value="Assaisonnement">Assaisonnement</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" id="writeroot">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="button" class="btn btn-success" value="Ajouter ingrédient" onClick="addInput('dynamicInput');">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 control-label">Instructions:</label>
+            <div class="col-md-8">
+              <textarea class="form-control" type="text" name="instructions" rows="10" required></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Catégorie:</label>
+            <div class="col-md-8">
+              <select class="form-control" name="categorie" required>
+                <option value="Aperitif">Aperitifs</option>
+                <option value="Entree">Entrees</option>
+                <option value="Plat principal">Plats</option>
+                <option value="Dessert">Desserts</option>
+                <option value="Autre">Autres</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Image:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="file" name="image">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="submit" class="btn btn-primary" value="Envoyer">
+              <span></span>
+              <input type="reset" class="btn btn-default" value="Reset">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <!-- jQuery -->
+  <script src="static/js/jquery.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="static/js/bootstrap.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="static/js/form.js"></script>
+
+</body>
