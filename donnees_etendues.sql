@@ -52,6 +52,7 @@ insert into Ingredient(Nom_ingredient,Unite_mesure) values ("tomate","g");
 insert into Ingredient(Nom_ingredient,Unite_mesure) values ("vanille","gousse");
 insert into Ingredient(Nom_ingredient,Unite_mesure) values ("viande hachee","g");
 
+commit;
 
 -- Eleve(Nom_eleve,Prenom_eleve)
 
@@ -66,6 +67,7 @@ insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve,Mot_de_passe) values ("Duru
 insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve,Mot_de_passe) values ("Habrant","Thomas","thabrant","CouCou");
 insert into Eleve(Nom_eleve,Prenom_eleve,Login_eleve,Mot_de_passe) values ("Gangloff","Nolwenn","nganglof","CouCou");
 
+commit;
 
 -- Recette
 
@@ -117,6 +119,8 @@ values ("Soupe de champignons", 4, 2, 15, 25, 5,
 insert into Recette(Nom_recette,Budget,Difficulte,Temps_preparation,Temps_cuisson,nb_personnes,Etapes,Categorie_recette,Id_Eleve)
 values ("Tatin de magret de canard au foie gras",6, 4, 15, 10, 1,
 "Eplucher la pomme, la couper en tranches 'demi-lune', les faire revenir avec le beurre 5 mn. Prendre une petite timbale, mettre une couche de pommes, 2 tranches de magret, des pommes, les 2 morceaux de magret et finir par les pommes. Ajouter la cuillère de calvados.  Passer à four chaud 5 mn. Démouler sur le pain de mie grillé, puis recouvrir de la tranche de foie gras. Servir chaud.","Entree",1);
+
+commit;
 
 -- COMPOSER
 
@@ -210,7 +214,7 @@ insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) val
 insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (10, 5,1,"secondaire");
 insert into Composer(Id_recette,Id_ingredient,Quantite,Categorie_ingredient) values (10, 3,5,"secondaire");
 
-
+commit; 
 -- COMMENTER
 
 insert into Commenter(Id_eleve,Id_recette,commentaire)
@@ -228,6 +232,8 @@ values (3,9,"Mooiiii j'aime la forêttttt");
 insert into Commenter(Id_eleve,Id_recette,commentaire)
 values (1,6,"A TABLE");
 
+commit;
+
 -- Avis
 
 insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avis_recette)
@@ -242,3 +248,5 @@ insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avi
 values (4,3,2,3,4,"Ca manque d'explication et les étapes ne sont pas suffisamment décrites...");
 insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avis_recette)
 values (3,5,5,4,4,"Ca déchire grave !");
+
+commit;
