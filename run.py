@@ -316,7 +316,7 @@ def nouvelleRecette():
 		instructions = request.form['instructions']
 		categorie = request.form['categorie']
 		image = request.files['image']
-
+		
 		query = "INSERT INTO Recette (Nom_recette, Budget, Difficulte, Temps_preparation, Temps_cuisson, Nb_personnes, Etapes, Categorie_recette, Id_eleve) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
 		cursor.execute(query, (name, budget, difficulty, prepTime, cookTime, number, instructions, categorie, current_user.id))
 		conn.commit()
@@ -333,9 +333,9 @@ def nouvelleRecette():
 			cursor.execute(query, (imagename, Id_recette))
 			conn.commit()
 
-		ExistingIngredient = False
 		ni = len(recipeIngredients)
 		for i in range(0,ni):
+			ExistingIngredient = False
 			for ingr in ingredients:
 				if recipeIngredients[i] == ingr[1] and unites[i] == ingr[2]:
 					ExistingIngredient = True
@@ -352,10 +352,96 @@ def nouvelleRecette():
 			query = "INSERT INTO Composer (Id_recette, Id_ingredient, Quantite, Categorie_ingredient) VALUES (%s, %s, %s, %s)"
 			cursor.execute(query, (Id_recette, Id_ingredient, quantites[i], principal[i]))
 			conn.commit()
-		return redirect(url_for('recettes', Id_recette = Id_recette))	
-
+		return redirect(url_for('recettes', Id_recette = Id_recette))
 
 	return render_template('nouvelleRecette.html')
+
+@app.route("/avis/<Id_recette>")
+@app.route("/avis/<Id_recette>",methods=['POST'])
+@login_required
+def ajoutAvis(Id_recette):
+	if request.method == 'POST':
+		conn = mysql.connect()
+		cursor = conn.cursor()
+		
+		query = "SELECT COUNT(*) FROM Avis WHERE Id_eleve = %s AND Id_recette = %s"
+		cursor.execute(query, (current_user.id, Id_recette))
+		already = cursor.fetchone()
+		
+		if already[0] == 1:
+			return redirect(url_for('recettes', Id_recette = Id_recette, error = "Vous avez deja un avis"))		
+		
+		query = "INSERT INTO Avis (Id_eleve,Id_recette,Avis_recette,Note_qualite,Note_justesse,Note_respect) VALUES(%s, %s, %s,%s, %s, %s)"
+		cursor.execute(query, (current_user.id, Id_recette, request.form['avis'], request.form['qualite'], request.form['justesse'], request.form['respect']))
+		conn.commit()
+		return redirect(url_for('recettes', Id_recette = Id_recette, error = "Avis poste"))
+	return render_template('ajoutAvis.html',Id_recette=Id_recette)
+
+
+@app.route("/avis/<Id_recette>/<login>", methods=['GET', 'POST'])
+@login_required
+def editAvis(Id_recette,login = None):
+	
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	query = "SELECT * FROM Avis NATURAL JOIN Eleve WHERE Avis.Id_recette = %s AND Eleve.Login_eleve = %s"
+	cursor.execute(query, (Id_recette,login))
+	avis = cursor.fetchone()
+	
+	if login != current_user.login or login== None:
+		return redirect(url_for('recettes', Id_recette = Id_recette, error = "Ceci n'est pas votre avis !"))	
+
+	if request.method == "POST":
+		avis = request.form['avis']
+		justesse = request.form['justesse']
+		qualite = request.form['qualite']
+		respect = request.form['respect']
+		
+		query = "UPDATE Avis SET Avis_recette = %s, Note_justesse = %s, Note_qualite = %s, Note_respect = %s WHERE Id_eleve = %s AND Id_recette = %s"
+		cursor.execute(query, (avis, justesse, qualite, respect,current_user.id,Id_recette))
+		conn.commit()
+		return redirect(url_for('recettes', Id_recette = Id_recette, error = "Avis modifie"))	
+
+	return render_template('editAvis.html', Id_recette=Id_recette,avis=avis,error = None)
+	
+
+@app.route("/suppression/<login>/<Id_recette>")
+@app.route("/suppression/<login>/<Id_recette>",methods=['POST'])
+@login_required
+def supprRecette(login,Id_recette):
+	
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	
+	query = "SELECT Login_eleve from Recette natural join Eleve WHERE Recette.Id_recette = %s"
+	cursor.execute(query, (Id_recette))
+	createur = cursor.fetchone()
+	
+	if login != current_user.login or createur[0] !=login :
+		return redirect(url_for('index', error = "Vous ne pouvez pas supprimer une recette qui ne vous appartient pas."))
+	
+	if request.method == 'POST':
+			
+		query = "DELETE FROM Recette WHERE Id_Recette = %s AND Id_eleve = %s"
+		cursor.execute(query, (Id_recette, current_user.id))
+		conn.commit()
+		return redirect(url_for('view_profile', login = login, error = "Recette supprimee"))
+		
+	return render_template('supprRecette.html',Id_recette=Id_recette)
+
+
+@app.route("/commentaire/<Id_recette>")
+@app.route("/commentaire/<Id_recette>",methods=['POST'])
+@login_required
+def ajoutCommentaire(Id_recette):
+	if request.method == 'POST':
+		conn = mysql.connect()
+		cursor = conn.cursor()
+		query = "INSERT INTO Commenter (Id_eleve,Id_recette,Commentaire) VALUES(%s, %s, %s)"
+		cursor.execute(query, (current_user.id, Id_recette, request.form['commentaire']))
+		conn.commit()
+		return redirect(url_for('recettes', Id_recette = Id_recette, error = "Avis poste"))
+	return render_template('ajoutCommentaire.html',Id_recette=Id_recette)
 
 if __name__ == "__main__":
 	app.run(debug=True)
