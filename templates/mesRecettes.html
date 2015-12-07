@@ -157,7 +157,7 @@
 							<div class="col-sm-1 col-lg-1 col-md-1">
 								{% if current_user.is_authenticated %}
 									{% if current_user.login == login %}
-										<a href="#">edit</a><br>	
+										<a href="/{{r[0]}}/edit">edit</a><br>	
 									{% else %}
 									{% endif %}
 								{% else %}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Recettes</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="../static/css/bootstrap.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="../static/css/shop-homepage.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Accueil</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="#">About</a>
+          </li>
+          <li>
+            <a href="/recherche/">Recherche une recette</a>
+          </li>
+          {% if current_user.is_authenticated %}
+          <li>
+            <a href="/users/">Utilisateurs</a>
+          </li>
+          {% endif %}
+        </ul>
+
+      </div>
+
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+
+  <div class="container">
+    <h1>Modification de la recette</h1>
+    <hr>
+    <div class="row">
+
+      <!-- edit form column -->
+      <div class="col-md-12 personal-info">
+       
+
+        <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+          
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Nom:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="name" value="{{recette[1]}}" required>
+            </div>
+          </div>         
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Budget:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="number" name="budget" value="{{recette[2]}}" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Difficulté:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="number" min="1" max="5" name="difficulte" value="{{recette[3]}}" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Temps de préparation:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="number" name="preparationTime" value="{{recette[4]}}" min="1" step="1" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Temps de cuisson:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="number" name="cookingTime" value="{{recette[5]}}" min="1" step="1" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Nombre de personnes:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="number" value="{{recette[6]}}" name="people" min="1" step="1" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Instructions:</label>
+            <div class="col-md-8">
+              <textarea class="form-control" type="text" name="instructions" rows="10" required>{{recette[7]}}</textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="submit" class="btn btn-primary" value="Modifier">
+              <span></span>
+              <input onclick="location.href = '/recette/{{recette[0]}}';" type="reset" class="btn btn-default" value="Cancel">
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <!-- jQuery -->
+  <script src="static/js/jquery.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="static/js/bootstrap.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="static/js/form.js"></script>
+
+</body>

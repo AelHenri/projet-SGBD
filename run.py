@@ -354,7 +354,37 @@ def nouvelleRecette():
 			conn.commit()
 		return redirect(url_for('recettes', Id_recette = Id_recette))
 
-	return render_template('nouvelleRecette.html')
+	return render_template('nouvelleRecette.html', recette = None)
+
+@app.route("/<Id_recette>/edit", methods=['GET', 'POST'])
+@login_required
+def editRecette(Id_recette):
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	query = "SELECT Id_eleve FROM Recette NATURAL JOIN Eleve WHERE Id_recette = " + Id_recette
+	cursor.execute(query)
+	auteur = cursor.fetchone()
+	if str(auteur[0]) != current_user.id:
+		return redirect(url_for('recettes', Id_recette = Id_recette, error = "Ceci n'est pas votre recette !"))
+
+	query = "SELECT * FROM Recette WHERE Id_recette =" + Id_recette
+	cursor.execute(query)
+	recette = cursor.fetchone()
+
+	query = "SELECT * FROM Ingredient"
+	cursor.execute(query)
+	ingredients = cursor.fetchall()
+
+	if request.method == "POST":
+		
+		query = "UPDATE Recette SET Nom_recette = %s, Budget = %s, Difficulte = %s,  Temps_preparation = %s,  Temps_cuisson = %s,  Etapes = %s, Nb_personnes = %s WHERE Id_recette = %s"
+		cursor.execute(query, (request.form['name'],request.form['budget'],request.form['difficulte'],request.form['preparationTime'],request.form['cookingTime'],request.form['instructions'],request.form['people'],Id_recette))
+		conn.commit()
+		return redirect(url_for('recettes', Id_recette = Id_recette, error = "Recette modifiee"))	
+
+		return render_template('nouvelleRecette.html', recette=recette)
+		
+	return render_template('editRecette.html', recette=recette)
 
 @app.route("/avis/<Id_recette>")
 @app.route("/avis/<Id_recette>",methods=['POST'])
