@@ -220,26 +220,26 @@ commit;
 insert into Commenter(Id_eleve,Id_recette,commentaire)
 values (1,2,"C'est cool dis donc, ça a l'air appétissant !");
 insert into Commenter(Id_eleve,Id_recette,commentaire)
-values (1,5,"J'ai trouvé ce que je vais bouffer ce soir, thanks !);");
+values (1,5,"J'ai trouvé ce que je vais manger ce soir, thanks !);");
 insert into Commenter(Id_eleve,Id_recette,commentaire)
 values (2,1,"Ca a pas l'air appétissant...");
 insert into Commenter(Id_eleve,Id_recette,commentaire)
-values (3,1,"COMME TA MERE");
+values (3,1,"C'est vrai...");
 insert into Commenter(Id_eleve,Id_recette,commentaire)
-values (4,1,"on avait dit pas les mamans !");
+values (4,1,"C'est pas si mal que ça !");
 insert into Commenter(Id_eleve,Id_recette,commentaire)
-values (3,9,"Mooiiii j'aime la forêttttt");
+values (3,9,"Moi j'aime les champignons !");
 insert into Commenter(Id_eleve,Id_recette,commentaire)
-values (1,6,"A TABLE");
+values (1,6,"A TABLE !");
 
 commit;
 
 -- Avis
 
 insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avis_recette)
-values (1,3,2,1,2,"Recette qui mériterait davantage d'explications.");
+values (6,3,2,1,2,"Recette qui mériterait davantage d'explications.");
 insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avis_recette)
-values (1,2,1,0,1,"La pauvreté des explications laissent à désirer.");
+values (7,2,1,0,1,"La pauvreté des explications laissent à désirer.");
 insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avis_recette)
 values (2,2,4,3,3,"Recette apétissante et correctement expliquée. Néanmoins, justesse du prix à revoir.");
 insert into Avis(Id_eleve,Id_recette,Note_qualite,Note_justesse,Note_respect,Avis_recette)
