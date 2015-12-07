@@ -118,7 +118,18 @@
 						   <h2>Profil de {{login}}</h2>
 						   {{user[0]}} {{user[1]}}, inscrit depuis le : {{user[2]}}
 					   </div>
-					   <h3>Recettes proposées</h3>
+					   <div class="row">
+					   
+						<h3>Recettes proposées</h3>
+					   
+					   {% if current_user.is_authenticated %}
+									{% if current_user.login == login %}
+										<a class="btn btn-success" href="/nouvelleRecette">Ajouter une recette</a><br>	
+									{% else %}
+									{% endif %}
+								{% else %}
+						{% endif %}
+						 </div><br>
                        {% for r in recettes %}
                        <div class="row">
 							<div class="col-sm-4 col-lg-4 col-md-4">
